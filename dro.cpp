@@ -11,6 +11,8 @@ const double MIN_SCL = 0.005;
 
 EEPROMClass DRO::eSettings; //Class for writing and reading from EEPROM
 
+int DRO::ledPin;
+int DRO::ledState;
 int DRO::iUnits;
 int DRO::iVolume;
 double DRO::dXPos; //Current position of the X axis
@@ -30,6 +32,9 @@ double DRO::dRScl;
 long DRO::lRCnt;
 
 DRO::DRO(){
+	ledPin = 13;
+	ledState = 1;
+
 	iUnits = 0;
 	iVolume = 0;
 
@@ -307,4 +312,15 @@ void DRO::decZCnt(){
 
 void DRO::decRCnt(){
 	lRCnt--;
+}
+
+void DRO::ledBlink(){
+	if(ledState){
+		ledState = 0;
+		digitalWrite(ledPin, LOW);
+	}
+	else{
+		ledState = 1;
+		digitalWrite(ledPin, HIGH);
+	}
 }

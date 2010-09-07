@@ -86,10 +86,12 @@ public:
 	static void changeZSign();
 	static void changeRSign();
 
+	static void ledBlink();
 	static EEPROMClass eSettings; //Class for writing and reading from EEPROM
 
 private:
-
+	static int ledPin;
+	static int ledState;
 	static int iUnits;
 	static int iVolume;
 

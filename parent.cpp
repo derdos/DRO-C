@@ -29,9 +29,19 @@ void Parent::run(){
 	//DRO::setXScl(0.0005);
 	//DRO::setYScl(0.0005);
 	curPanel->initialize();
+
+	//Set up the led for blinking
+	pinMode(13, OUTPUT);
+	boolean led = true;
 	delay(100);
+
 	while(1){
-		delay(20);
+		delay(30);
+
+		//Blink the led to show that we're updating
+		digitalWrite(13, led);
+		led = !led;
+
 		//double read = DRO::eSettings.readDouble(XSCL_ADDR);
 		//Serial.println(read);
 		/*
@@ -64,6 +74,7 @@ void Parent::run(){
 		Serial.println(DRO::getRCnt());
 		*/
 		curPanel->update(sReadBuffer.getChars());
+		DRO::ledBlink();
 		//Check how many bytes are in the buffer
 		/*if(Serial3.available() > 0)
 			sReadBuffer += Serial3.read();
@@ -74,7 +85,6 @@ void Parent::run(){
 			sReadBuffer = "";
 		}
 		*/
-
 	}
 }
 
