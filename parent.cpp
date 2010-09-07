@@ -26,7 +26,7 @@ void Parent::setHomePanel(Panel *panel){
 
 void Parent::run(){
 	delay(100);
-	curPanel->initialize();
+	//curPanel->initialize();
 
 	//Set up the led for blinking
 	pinMode(13, OUTPUT);
@@ -34,7 +34,7 @@ void Parent::run(){
 	delay(100);
 
 	while(1){
-		delay(30);
+		delay(100);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
@@ -45,6 +45,7 @@ void Parent::run(){
 
 		while(Serial3.available()){
 			char c = Serial3.read();
+			Serial.println(c);
 			if (c == 'x'){
 				sReadBuffer[0] = 'x';
 				sReadBuffer[1] = Serial3.read();
@@ -52,9 +53,9 @@ void Parent::run(){
 				sReadBuffer[3] = Serial3.read();
 				Serial3.flush();
 				Serial.println(sReadBuffer);
+				delay(20);
 			}
 		}
-
 		if (sReadBuffer[0] != 'x')
 			strcpy(sReadBuffer, "updt");
 
@@ -67,10 +68,13 @@ void Parent::pushPanel(Panel *panel){
 	lastPanel = curPanel;
 	curPanel = panel;
 	curPanel->initialize();
+	Serial.println("Pushed Panel");
 }
 
 void Parent::popPanel(){
 	curPanel = lastPanel;
 	lastPanel = NULL;
+	delay(20);
 	curPanel->initialize();
+	Serial.println("Popped Panel");
 }

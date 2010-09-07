@@ -28,15 +28,17 @@ SLCD::SLCD(){
 void SLCD::initializeHome(){
 	//Clear the screen twice just to be sure
 	Serial3.println("z");
-	Serial3.println("z");
 
 	//Display the home screen
 	if (DRO::getUnits()) { //0 means centimeters
-		Serial3.println("m 1:cm 00.0000 00.0000 00.0000 000.000");
+		Serial3.println("m 1:cm");
+		updateHomeValues();
 	}
 	else {
-		Serial3.println("m 1:in 00.0000 00.0000 00.0000 000.000");
+		Serial3.println("m 1:in");
+		updateHomeValues();
 	}
+
 	DRO::getXScl();
 	DRO::getYScl();
 	DRO::getZScl();
@@ -44,7 +46,7 @@ void SLCD::initializeHome(){
 }
 
 void SLCD::initializeConfig(const int axis){
-	Serial3.println("z");
+	clearScreen();
 	if (axis == 1){
 		Serial3.println("m 3:x");
 		Serial3.println("m 4 00.0000");
@@ -116,7 +118,6 @@ void SLCD::updateConfigValues(const double dist){
 }
 
 void SLCD::clearScreen(){
-	Serial3.println("z");
 	Serial3.println("z");
 }
 

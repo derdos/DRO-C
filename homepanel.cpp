@@ -36,11 +36,20 @@ HomePanel::HomePanel(Parent *parent) :
 
 void HomePanel::initialize(){
 	SLCD::initializeHome();
+	Serial.println("Home Panel Initialized");
 }
 
 void HomePanel::update(char *command){
 	if (!strcmp(command,"updt")){
 		SLCD::updateHomeValues();
+	} else if (!strcmp(command,XConf)) {
+		parent->pushPanel(&XConfig);
+	} else if (!strcmp(command,YConf)) {
+		parent->pushPanel(&YConfig);
+	} else if (!strcmp(command,ZConf)) {
+		parent->pushPanel(&ZConfig);
+	} else if (!strcmp(command,RConf)) {
+		parent->pushPanel(&RConfig);
 	} else if (!strcmp(command,zeroX)) {
 		DRO::zeroX();
 		SLCD::updateHomeValues();
@@ -53,13 +62,5 @@ void HomePanel::update(char *command){
 	} else if (!strcmp(command,zeroR)) {
 		DRO::zeroR();
 		SLCD::updateHomeValues();
-	} else if (!strcmp(command,XConf)) {
-		parent->pushPanel(&XConfig);
-	} else if (!strcmp(command,YConf)) {
-		parent->pushPanel(&YConfig);
-	} else if (!strcmp(command,ZConf)) {
-		parent->pushPanel(&ZConfig);
-	} else if (!strcmp(command,RConf)) {
-		parent->pushPanel(&RConfig);
 	}
 }
