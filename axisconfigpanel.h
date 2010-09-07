@@ -7,14 +7,16 @@
 
 #ifndef AXISCONFIGPANEL_H_
 #define AXISCONFIGPANEL_H_
+#include "parent.h"
 
-class AxisConfigPanel{
+class AxisConfigPanel : public Panel{
 private:
 	char axisName;
 	long startCount;
 	double dist;
+	Parent *parent;
 public:
-	AxisConfigPanel(const int axis);
+	AxisConfigPanel(const int axis, Parent *newParent);
 
 	virtual void initialize();
 	virtual void update(char *command);

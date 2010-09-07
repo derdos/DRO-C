@@ -4,10 +4,12 @@
  *  Created on: Sep 3, 2010
  *      Author: David Erdos
  */
-
+//====================================================
+//						HomePanel
+//====================================================
 #include "homepanel.h"
-#include "panel.h"
 #include "slcd.h"
+#include "parent.h"
 
 const char * zeroX = "x130";
 const char * zeroY = "x131";
@@ -24,8 +26,12 @@ const int AxisY = 2;
 const int AxisZ = 3;
 const int AxisR = 4;
 
-HomePanel::HomePanel(Parent *parent) : parent(parent) {
-
+HomePanel::HomePanel(Parent *parent) :
+		parent(parent),
+		XConfig(1,parent),
+		YConfig(2,parent),
+		ZConfig(3,parent),
+		RConfig(4,parent){
 }
 
 void HomePanel::initialize(){
@@ -48,7 +54,12 @@ void HomePanel::update(char *command){
 		DRO::zeroR();
 		SLCD::updateHomeValues();
 	} else if (!strcmp(command,XConf)) {
-		DRO::zeroR();
-		SLCD::updateHomeValues();
+		parent->pushPanel(&XConfig);
+	} else if (!strcmp(command,YConf)) {
+		parent->pushPanel(&YConfig);
+	} else if (!strcmp(command,ZConf)) {
+		parent->pushPanel(&ZConfig);
+	} else if (!strcmp(command,RConf)) {
+		parent->pushPanel(&RConfig);
 	}
 }

@@ -8,16 +8,20 @@
 #include "parent.h"
 #include "panel.h"
 #include "dro.h"
-#include <homepanel.h>
+#include "slcd.h"
 
-Parent::Parent() : homePanel(HomePanel(this)){
+Parent::Parent(){
 	iBufferSize = 7;
 	iIndex = 0;
 	memset(&sReadBuffer, 0, sizeof(sReadBuffer));
 	cEOL = '\r';
 	//Open the serial port
 	Serial3.begin(115200);
-	pushPanel(&homePanel);
+}
+
+void Parent::setHomePanel(Panel *panel){
+	homePanel = panel;
+	pushPanel(homePanel);
 }
 
 void Parent::run(){
@@ -62,7 +66,7 @@ void Parent::run(){
 void Parent::pushPanel(Panel *panel){
 	lastPanel = curPanel;
 	curPanel = panel;
-	panel->initialize();
+	curPanel->initialize();
 }
 
 void Parent::popPanel(){

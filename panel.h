@@ -17,5 +17,3 @@ public:
 };
 
 #endif /* PANEL_H_ */
-
-

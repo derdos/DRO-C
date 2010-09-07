@@ -27,7 +27,7 @@ const char * StartCal = "x162";
 const char * StopCal  = "x163";
 const char * CalDist  = "x164";
 
-AxisConfigPanel::AxisConfigPanel(const int axis){
+AxisConfigPanel::AxisConfigPanel(const int axis, Parent *newParent){
 	if (axis == 1)
 		axisName = 'x';
 	else if (axis == 2)
@@ -39,20 +39,25 @@ AxisConfigPanel::AxisConfigPanel(const int axis){
 
 	startCount = 0;
 	dist = 0;
+	parent = newParent;
 }
 
 void AxisConfigPanel::initialize(){
 	if (axisName == 'x'){
-		startCount = DRO::getXCnt();
+		SLCD::initializeConfig(1);
+		SLCD::updateConfigValues(dist);
 	}
 	else if (axisName == 'y'){
-		startCount = DRO::getYCnt();
+		SLCD::initializeConfig(2);
+		SLCD::updateConfigValues(dist);
 	}
 	else if (axisName == 'z'){
-		startCount = DRO::getZCnt();
+		SLCD::initializeConfig(3);
+		SLCD::updateConfigValues(dist);
 	}
 	else if (axisName == 'r'){
-		startCount = DRO::getRCnt();
+		SLCD::initializeConfig(4);
+		SLCD::updateConfigValues(dist);
 	}
 }
 
@@ -61,7 +66,7 @@ void AxisConfigPanel::update(char *command){
 		SLCD::updateConfigValues(dist);
 	}
 	else if (!strcmp(command,Return)) {
-
+		parent->popPanel();
 	}
 	else if (!strcmp(command,Clear)) {
 		dist = 0;
@@ -95,8 +100,38 @@ void AxisConfigPanel::update(char *command){
 			DRO::setRCal(startCount, DRO::getRCnt(), dist);
 		}
 	}
-	else if (!strcmp(command,XConf)) {
-		DRO::zeroR();
-		SLCD::updateHomeValues();
+	else if (!strcmp(command,n0)) {
+
 	}
+	else if (!strcmp(command,n1)) {
+
+	}
+	else if (!strcmp(command,n2)) {
+
+	}
+	else if (!strcmp(command,n3)) {
+
+	}
+	else if (!strcmp(command,n4)) {
+
+	}
+	else if (!strcmp(command,n5)) {
+
+	}
+	else if (!strcmp(command,n6)) {
+
+	}
+	else if (!strcmp(command,n7)) {
+
+	}
+	else if (!strcmp(command,n8)) {
+
+	}
+	else if (!strcmp(command,n9)) {
+
+	}
+	else if (!strcmp(command,dec)) {
+
+	}
+
 }
