@@ -7,7 +7,7 @@
 
 #include "dro.h"
 
-const double MIN_SCL = 0.005;
+const double MIN_SCL = 0.00001;
 
 EEPROMClass DRO::eSettings; //Class for writing and reading from EEPROM
 

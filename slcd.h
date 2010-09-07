@@ -21,14 +21,14 @@
 class SLCD{
 public:
 	SLCD();
-	static void initializeLCD();
+	static void initializeHome();
+	static void initializeConfig(const int axis);
 	static void updateHomeValues();
+	static void updateConfigValues(const double dist);
 	static void displayAxisConfig(int axis);
 	static void displaySetup();
 	static void clearScreen();
-	static void SendLCD(char *text);
-	static void readAck();
-	static char readBlocking();
+
 private:
 	static double dXVal;
 	static double dYVal;

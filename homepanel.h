@@ -10,8 +10,13 @@
 
 #include "panel.h"
 
+class Parent;
+
 class HomePanel : public Panel {
+private:
+	Parent *parent;
 public:
+	HomePanel(Parent *parent);
 	virtual void initialize();
 	virtual void update(char *command);
 };

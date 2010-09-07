@@ -11,6 +11,7 @@
 #include <WProgram.h>
 #include <WString.h>
 #include "panel.h"
+#include "homepanel.h"
 
 class Parent {
 private:
@@ -19,7 +20,8 @@ private:
 	char cEOL;
 	Panel *curPanel;
 	Panel *lastPanel;
-	char sReadBuffer[7];
+	HomePanel homePanel;
+	char sReadBuffer[5];
 
 public:
 	Parent();

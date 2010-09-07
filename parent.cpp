@@ -10,24 +10,18 @@
 #include "dro.h"
 #include <homepanel.h>
 
-static HomePanel homePanel;
-
-Parent::Parent(){
+Parent::Parent() : homePanel(HomePanel(this)){
 	iBufferSize = 7;
 	iIndex = 0;
 	memset(&sReadBuffer, 0, sizeof(sReadBuffer));
 	cEOL = '\r';
 	//Open the serial port
 	Serial3.begin(115200);
-	Serial3.println("z");
-	homePanel = HomePanel();
 	pushPanel(&homePanel);
 }
 
 void Parent::run(){
 	delay(100);
-	//DRO::setXScl(0.0005);
-	//DRO::setYScl(0.0005);
 	curPanel->initialize();
 
 	//Set up the led for blinking
@@ -36,30 +30,32 @@ void Parent::run(){
 	delay(100);
 
 	while(1){
-		delay(100);
+		delay(30);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
 		led = !led;
 
 		curPanel->update(sReadBuffer);
-
 		DRO::ledBlink();
-		//Check how many bytes are in the buffer
-		if(Serial3.available() > 0){
-			int c = -1;
-			int i = 0;
-			while(c != '\r' && i < 5){
-				while(c == -1){
-					c = Serial3.read();
-				}
-				sReadBuffer[i++] = c;
-			}
 
-			//Serial.println("foo");
-			Serial.println(sReadBuffer);
-			memset(&sReadBuffer, 0, sizeof(sReadBuffer));
+		while(Serial3.available()){
+			char c = Serial3.read();
+			if (c == 'x'){
+				sReadBuffer[0] = 'x';
+				sReadBuffer[1] = Serial3.read();
+				sReadBuffer[2] = Serial3.read();
+				sReadBuffer[3] = Serial3.read();
+				Serial3.flush();
+				Serial.println(sReadBuffer);
+			}
 		}
+
+		if (sReadBuffer[0] != 'x')
+			strcpy(sReadBuffer, "updt");
+
+		curPanel->update(sReadBuffer);
+		memset(&sReadBuffer, 0, sizeof(sReadBuffer));
 	}
 }
 
