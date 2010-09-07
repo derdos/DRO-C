@@ -15,7 +15,7 @@ static HomePanel homePanel;
 Parent::Parent(){
 	iBufferSize = 7;
 	iIndex = 0;
-	sReadBuffer = "";
+	memset(&sReadBuffer, 0, sizeof(sReadBuffer));
 	cEOL = '\r';
 	//Open the serial port
 	Serial3.begin(115200);
@@ -36,55 +36,30 @@ void Parent::run(){
 	delay(100);
 
 	while(1){
-		delay(30);
+		delay(100);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
 		led = !led;
 
-		//double read = DRO::eSettings.readDouble(XSCL_ADDR);
-		//Serial.println(read);
-		/*
-		Serial.print("X:  ");
-		Serial.print(DRO::getXPos());
-		Serial.print("   ");
-		Serial.print(DRO::getXScl());
-		Serial.print("   ");
-		Serial.println(DRO::getXCnt());
+		curPanel->update(sReadBuffer);
 
-		Serial.print("Y:  ");
-		Serial.print(DRO::getYPos());
-		Serial.print("   ");
-		Serial.print(DRO::getYScl());
-		Serial.print("   ");
-		Serial.println(DRO::getYCnt());
-
-		Serial.print("Z:  ");
-		Serial.print(DRO::getZPos());
-		Serial.print("   ");
-		Serial.print(DRO::getZScl());
-		Serial.print("   ");
-		Serial.println(DRO::getZCnt());
-
-		Serial.print("R:  ");
-		Serial.print(DRO::getRAng());
-		Serial.print("   ");
-		Serial.print(DRO::getRScl());
-		Serial.print("   ");
-		Serial.println(DRO::getRCnt());
-		*/
-		curPanel->update(sReadBuffer.getChars());
 		DRO::ledBlink();
 		//Check how many bytes are in the buffer
-		/*if(Serial3.available() > 0)
-			sReadBuffer += Serial3.read();
-		if(sReadBuffer.charAt(sReadBuffer.length()) == cEOL){
-			//Update current panel
-			curPanel->update(sReadBuffer.getChars());
-			//Clear the read buffer
-			sReadBuffer = "";
+		if(Serial3.available() > 0){
+			int c = -1;
+			int i = 0;
+			while(c != '\r' && i < 5){
+				while(c == -1){
+					c = Serial3.read();
+				}
+				sReadBuffer[i++] = c;
+			}
+
+			//Serial.println("foo");
+			Serial.println(sReadBuffer);
+			memset(&sReadBuffer, 0, sizeof(sReadBuffer));
 		}
-		*/
 	}
 }
 

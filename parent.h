@@ -19,7 +19,7 @@ private:
 	char cEOL;
 	Panel *curPanel;
 	Panel *lastPanel;
-	String sReadBuffer;
+	char sReadBuffer[7];
 
 public:
 	Parent();
