@@ -67,6 +67,8 @@ void AxisConfigPanel::update(char *command){
 	}
 	else if (!strcmp(command,Return)) {
 		parent->popPanel();
+		delay(100);
+		SLCD::initializeHome();
 	}
 	else if (!strcmp(command,Clear)) {
 		dist = 0;

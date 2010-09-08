@@ -33,8 +33,18 @@ void Parent::run(){
 	boolean led = true;
 	delay(100);
 
+	long XTemp = 0;
+	long YTemp = 0;
+	long ZTemp = 0;
+	long RTemp = 0;
+
 	while(1){
-		delay(50);
+		XTemp = DRO::getXCnt();
+		YTemp = DRO::getYCnt();
+		ZTemp = DRO::getZCnt();
+		RTemp = DRO::getRCnt();
+
+		delay(10);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
@@ -57,7 +67,11 @@ void Parent::run(){
 			}
 		}
 
-		if (sReadBuffer[0] != 'x')
+		if ((sReadBuffer[0] != 'x'))/*
+				&& (XTemp != DRO::getXCnt())
+				&& (YTemp != DRO::getYCnt())
+				&& (ZTemp != DRO::getZCnt())
+				&& (RTemp != DRO::getRCnt()))*/
 			strcpy(sReadBuffer, "updt");
 
 		curPanel->update(sReadBuffer);

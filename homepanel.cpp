@@ -43,13 +43,25 @@ void HomePanel::update(char *command){
 	if (!strcmp(command,"updt")){
 		SLCD::updateHomeValues();
 	} else if (!strcmp(command,XConf)) {
+		delay(100);
 		parent->pushPanel(&XConfig);
+		SLCD::clearScreen();
+		SLCD::initializeConfig(1);
 	} else if (!strcmp(command,YConf)) {
+		delay(100);
 		parent->pushPanel(&YConfig);
+		SLCD::clearScreen();
+		SLCD::initializeConfig(2);
 	} else if (!strcmp(command,ZConf)) {
+		delay(100);
 		parent->pushPanel(&ZConfig);
+		SLCD::clearScreen();
+		SLCD::initializeConfig(3);
 	} else if (!strcmp(command,RConf)) {
+		delay(100);
 		parent->pushPanel(&RConfig);
+		SLCD::clearScreen();
+		SLCD::initializeConfig(4);
 	} else if (!strcmp(command,zeroX)) {
 		DRO::zeroX();
 		SLCD::updateHomeValues();

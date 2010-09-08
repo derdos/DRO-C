@@ -11,6 +11,11 @@ const double MIN_SCL = 0.00001;
 
 EEPROMClass DRO::eSettings; //Class for writing and reading from EEPROM
 
+int DRO::XFlag;
+int DRO::YFlag;
+int DRO::ZFlag;
+int DRO::RFlag;
+
 int DRO::ledPin;
 int DRO::ledState;
 int DRO::iUnits;
@@ -53,6 +58,11 @@ DRO::DRO(){
 	dRAng = 0;
 	dRScl = eSettings.readDouble(RSCL_ADDR);
 	lRCnt = 0;
+
+	XFlag = 0;
+	YFlag = 0;
+	ZFlag = 0;
+	RFlag = 0;
 }
 
 int DRO::getUnits(){
@@ -284,34 +294,66 @@ void DRO::changeRSign(){
 
 void DRO::incXCnt(){
 	lXCnt++;
+	if (lXCnt == -1)
+		XFlag = 2;
+	else
+		XFlag = 1;
 }
 
 void DRO::incYCnt(){
 	lYCnt++;
+	if (lYCnt == -1)
+		YFlag = 2;
+	else
+		YFlag = 1;
 }
 
 void DRO::incZCnt(){
 	lZCnt++;
+	if (lZCnt == -1)
+		ZFlag = 2;
+	else
+		ZFlag = 1;
 }
 
 void DRO::incRCnt(){
 	lRCnt++;
+	if (lRCnt == -1)
+		RFlag = 2;
+	else
+		RFlag = 1;
 }
 
 void DRO::decXCnt(){
 	lXCnt--;
+	if (lXCnt == 0)
+		XFlag = 3;
+	else
+		XFlag = 1;
 }
 
 void DRO::decYCnt(){
 	lYCnt--;
+	if (lYCnt == 0)
+		YFlag = 3;
+	else
+		YFlag = 1;
 }
 
 void DRO::decZCnt(){
 	lZCnt--;
+	if (lZCnt == 0)
+		ZFlag = 3;
+	else
+		ZFlag = 1;
 }
 
 void DRO::decRCnt(){
 	lRCnt--;
+	if (lRCnt == 0)
+		RFlag = 3;
+	else
+		RFlag = 1;
 }
 
 void DRO::ledBlink(){
@@ -323,4 +365,36 @@ void DRO::ledBlink(){
 		ledState = 1;
 		digitalWrite(ledPin, HIGH);
 	}
+}
+
+int DRO::getXFlag(){
+	return XFlag;
+}
+
+int DRO::getYFlag(){
+	return YFlag;
+}
+
+int DRO::getZFlag(){
+	return ZFlag;
+}
+
+int DRO::getRFlag(){
+	return RFlag;
+}
+
+void DRO::clearXFlag(){
+	XFlag = 0;
+}
+
+void DRO::clearYFlag(){
+	YFlag = 0;
+}
+
+void DRO::clearZFlag(){
+	ZFlag = 0;
+}
+
+void DRO::clearRFlag(){
+	RFlag = 0;
 }

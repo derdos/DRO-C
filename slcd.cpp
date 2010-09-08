@@ -132,6 +132,7 @@ void SLCD::updateConfigValues(const double dist){
 
 void SLCD::clearScreen(){
 	sendLCD("z");
+	sendLCD("z");
 }
 
 //Displays negative signs

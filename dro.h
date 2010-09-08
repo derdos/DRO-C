@@ -86,6 +86,16 @@ public:
 	static void changeZSign();
 	static void changeRSign();
 
+	static int getXFlag();
+	static int getYFlag();
+	static int getZFlag();
+	static int getRFlag();
+
+	static void clearXFlag();
+	static void clearYFlag();
+	static void clearZFlag();
+	static void clearRFlag();
+
 	static void ledBlink();
 	static EEPROMClass eSettings; //Class for writing and reading from EEPROM
 
@@ -110,6 +120,16 @@ private:
 	static double dRAng;
 	static double dRScl;
 	static long lRCnt;
+
+	static int XFlag;
+	static int YFlag;
+	static int ZFlag;
+	static int RFlag;
+
+	static int XSChange;
+	static int YSChange;
+	static int ZSChange;
+	static int RSChange;
 };
 
 #endif /* DRO_H_ */
