@@ -79,49 +79,87 @@ void SLCD::updateHomeValues(){
 	dZVal = DRO::getZPos();
 	dRVal = DRO::getRAng();
 
-	//Are the values negative?
-	/*
-	if(dXVal < 0){
-		dispXNeg(TRUE);
-	}
-	else{
-		dispXNeg(FALSE);
+	int XFlag = DRO::getXFlag();
+	int YFlag = DRO::getYFlag();
+	int ZFlag = DRO::getZFlag();
+	int RFlag = DRO::getRFlag();
+
+	if (XFlag) {
+		if (XFlag == 1){
+			sendLCD("m 6 ",0);
+			fmtDouble(abs(dXVal),4,cValue,2,9);
+			sendLCD(cValue);
+		} else if (XFlag == 2) {
+			sendLCD("m 6 ",0);
+			fmtDouble(abs(dXVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispXNeg(false);
+		} else if (XFlag == 3) {
+			sendLCD("m 6 ",0);
+			fmtDouble(abs(dXVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispXNeg(true);
+		}
+		DRO::clearXFlag();
 	}
 
-	if(dYVal < 0){
-		dispYNeg(TRUE);
-	}
-	else{
-		dispYNeg(FALSE);
+	if (YFlag) {
+		if (YFlag == 1){
+			sendLCD("m 7 ",0);
+			fmtDouble(abs(dYVal),4,cValue,2,9);
+			sendLCD(cValue);
+		} else if (YFlag == 2) {
+			sendLCD("m 7 ",0);
+			fmtDouble(abs(dYVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispYNeg(false);
+		} else if (YFlag == 3) {
+			sendLCD("m 7 ",0);
+			fmtDouble(abs(dYVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispYNeg(true);
+		}
+		DRO::clearYFlag();
 	}
 
-	if(dZVal < 0){
-		dispZNeg(TRUE);
-	}
-	else{
-		dispZNeg(FALSE);
+	if (ZFlag) {
+		if (ZFlag == 1){
+			sendLCD("m 8 ",0);
+			fmtDouble(abs(dZVal),4,cValue,2,9);
+			sendLCD(cValue);
+		} else if (ZFlag == 2) {
+			sendLCD("m 8 ",0);
+			fmtDouble(abs(dZVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispZNeg(false);
+		} else if (ZFlag == 3) {
+			sendLCD("m 8 ",0);
+			fmtDouble(abs(dZVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispZNeg(true);
+		}
+		DRO::clearZFlag();
 	}
 
-	if(dRVal < 0){
-		dispRNeg(TRUE);
+	if (RFlag) {
+		if (RFlag == 1){
+			sendLCD("m 8 ",0);
+			fmtDouble(abs(dRVal),4,cValue,2,9);
+			sendLCD(cValue);
+		} else if (RFlag == 2) {
+			sendLCD("m 8 ",0);
+			fmtDouble(abs(dRVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispRNeg(false);
+		} else if (RFlag == 3) {
+			sendLCD("m 8 ",0);
+			fmtDouble(abs(dRVal),4,cValue,2,9);
+			sendLCD(cValue);
+			dispRNeg(true);
+		}
+		DRO::clearRFlag();
 	}
-	else{
-		dispRNeg(FALSE);
-	}
-	*/
 
-	sendLCD("m 2 ",0);
-	fmtDouble(abs(dXVal),4,cValue,2,9);
-	sendLCD(cValue,0);
-	fmtDouble(abs(dYVal),4,cValue,2,9);
-	sendLCD(" ",0);
-	sendLCD(cValue,0);
-	fmtDouble(abs(dZVal),4,cValue,2,9);
-	sendLCD(" ",0);
-	sendLCD(cValue,0);
-	fmtDouble(abs(dRVal),3,cValue,3,9);
-	sendLCD(" ",0);
-	sendLCD(cValue);
 }
 
 void SLCD::updateConfigValues(const double dist){

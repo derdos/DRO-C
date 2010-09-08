@@ -24,6 +24,7 @@ public:
 	static void initializeHome();
 	static void initializeConfig(const int axis);
 	static void updateHomeValues();
+	static void forceUpdateHomeValues();
 	static void updateConfigValues(const double dist);
 	static void displayAxisConfig(int axis);
 	static void displaySetup();

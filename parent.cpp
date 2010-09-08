@@ -44,7 +44,7 @@ void Parent::run(){
 		ZTemp = DRO::getZCnt();
 		RTemp = DRO::getRCnt();
 
-		delay(10);
+		delay(20);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
