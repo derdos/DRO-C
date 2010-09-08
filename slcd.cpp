@@ -23,19 +23,21 @@ SLCD::SLCD(){
 	dYVal = 0;
 	dZVal = 0;
 	dRVal = 0;
+	memset(&cValue, 0, sizeof(cValue));
+	memset(&cBuffer, 0, sizeof(cBuffer));
 }
 
 void SLCD::initializeHome(){
 	//Clear the screen twice just to be sure
-	Serial3.println("z");
+	sendLCD("z");
 
 	//Display the home screen
 	if (DRO::getUnits()) { //0 means centimeters
-		Serial3.println("m 1:cm");
+		sendLCD("m 1:cm");
 		updateHomeValues();
 	}
 	else {
-		Serial3.println("m 1:in");
+		sendLCD("m 1:in");
 		updateHomeValues();
 	}
 
@@ -48,17 +50,26 @@ void SLCD::initializeHome(){
 void SLCD::initializeConfig(const int axis){
 	clearScreen();
 	if (axis == 1){
-		Serial3.println("m 3:x");
-		Serial3.println("m 4 00.0000");
+		sendLCD("m 3:x");
+		sendLCD("m 4 00.0000");
 	} else if (axis == 2){
-		Serial3.println("m 3:y");
-		Serial3.println("m 4 00.0000");
+		sendLCD("m 3:y");
+		sendLCD("m 4 00.0000");
 	} else if (axis == 3){
-		Serial3.println("m 3:z");
-		Serial3.println("m 4 00.0000");
+		sendLCD("m 3:z");
+		sendLCD("m 4 00.0000");
 	} else if (axis == 4){
-		Serial3.println("m 3:r");
-		Serial3.println("m 4 00.0000");
+		sendLCD("m 3:r");
+		sendLCD("m 4 000.000");
+	}
+}
+
+int SLCD::sendLCD(char *command, int final){
+	if (!final){
+		Serial3.print(command);
+	} else{
+		Serial3.print(command);
+		Serial3.print('\r');
 	}
 }
 
@@ -69,6 +80,7 @@ void SLCD::updateHomeValues(){
 	dRVal = DRO::getRAng();
 
 	//Are the values negative?
+	/*
 	if(dXVal < 0){
 		dispXNeg(TRUE);
 	}
@@ -96,58 +108,59 @@ void SLCD::updateHomeValues(){
 	else{
 		dispRNeg(FALSE);
 	}
+	*/
 
-	Serial3.print("m 2 ");
+	sendLCD("m 2 ",0);
 	fmtDouble(abs(dXVal),4,cValue,2,9);
-	Serial3.print(cValue);
+	sendLCD(cValue,0);
 	fmtDouble(abs(dYVal),4,cValue,2,9);
-	Serial3.print(" ");
-	Serial3.print(cValue);
+	sendLCD(" ",0);
+	sendLCD(cValue,0);
 	fmtDouble(abs(dZVal),4,cValue,2,9);
-	Serial3.print(" ");
-	Serial3.print(cValue);
+	sendLCD(" ",0);
+	sendLCD(cValue,0);
 	fmtDouble(abs(dRVal),3,cValue,3,9);
-	Serial3.print(" ");
-	Serial3.println(cValue);
+	sendLCD(" ",0);
+	sendLCD(cValue);
 }
 
 void SLCD::updateConfigValues(const double dist){
-	Serial3.println("m 4 ");
+	sendLCD("m 4 ",0);
 	fmtDouble(dist,4,cValue,2,9);
-	Serial3.println(cValue);
+	sendLCD(cValue);
 }
 
 void SLCD::clearScreen(){
-	Serial3.println("z");
+	sendLCD("z");
 }
 
 //Displays negative signs
 void SLCD::dispXNeg(bool sign){
 	if (sign)
-		Serial3.println("r 3 80 13 85 1 000");
+		sendLCD("r 3 80 13 85 1 000");
 	else
-		Serial3.println("r 3 80 13 85 1 fff");
+		sendLCD("r 3 80 13 85 1 fff");
 }
 
 void SLCD::dispYNeg(bool sign){
 	if (sign)
-		Serial3.println("r 3 195 13 200 1 000");
+		sendLCD("r 3 195 13 200 1 000");
 	else
-		Serial3.println("r 3 195 13 200 1 fff");
+		sendLCD("r 3 195 13 200 1 fff");
 }
 
 void SLCD::dispZNeg(bool sign){
 	if (sign)
-		Serial3.println("r 245 80 255 85 1 000");
+		sendLCD("r 245 80 255 85 1 000");
 	else
-		Serial3.println("r 245 80 255 85 1 fff");
+		sendLCD("r 245 80 255 85 1 fff");
 }
 
 void SLCD::dispRNeg(bool sign){
 	if (sign)
-		Serial3.println("r 245 195 255 200 1 000");
+		sendLCD("r 245 195 255 200 1 000");
 	else
-		Serial3.println("r 245 195 255 200 1 fff");
+		sendLCD("r 245 195 255 200 1 fff");
 }
 
 //

@@ -28,6 +28,7 @@ public:
 	static void displayAxisConfig(int axis);
 	static void displaySetup();
 	static void clearScreen();
+	static int sendLCD(char *command, int final = 1);
 
 private:
 	static double dXVal;
@@ -35,6 +36,7 @@ private:
 	static double dZVal;
 	static double dRVal;
 	static char cValue[7];
+	static char cBuffer[7];
 
 	static void fmtDouble(double val, byte precision, char *buf, unsigned frontPad, unsigned bufLen = 0xffff);
 	static unsigned fmtUnsigned(unsigned long val, char *buf, unsigned bufLen = 0xffff, unsigned width = 0);

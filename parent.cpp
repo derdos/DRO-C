@@ -34,13 +34,13 @@ void Parent::run(){
 	delay(100);
 
 	while(1){
-		delay(100);
+		delay(50);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
 		led = !led;
 
-		curPanel->update(sReadBuffer);
+		//curPanel->update(sReadBuffer);
 		DRO::ledBlink();
 
 		while(Serial3.available()){
@@ -56,6 +56,7 @@ void Parent::run(){
 				delay(20);
 			}
 		}
+
 		if (sReadBuffer[0] != 'x')
 			strcpy(sReadBuffer, "updt");
 
