@@ -23,13 +23,18 @@ public:
 	SLCD();
 	static void initializeHome();
 	static void initializeConfig(const int axis);
-	static void updateHomeValues();
+	static void updateHomeValues(int axis = 0);
 	static void forceUpdateHomeValues();
-	static void updateConfigValues(const double dist);
+	static void updateConfigValues(const double dist, int axis);
 	static void displayAxisConfig(int axis);
 	static void displaySetup();
 	static void clearScreen();
 	static int sendLCD(char *command, int final = 1);
+
+	static void dispXNeg(bool sign);
+	static void dispYNeg(bool sign);
+	static void dispZNeg(bool sign);
+	static void dispRNeg(bool sign);
 
 private:
 	static double dXVal;
@@ -41,11 +46,6 @@ private:
 
 	static void fmtDouble(double val, byte precision, char *buf, unsigned frontPad, unsigned bufLen = 0xffff);
 	static unsigned fmtUnsigned(unsigned long val, char *buf, unsigned bufLen = 0xffff, unsigned width = 0);
-
-	static void dispXNeg(bool sign);
-	static void dispYNeg(bool sign);
-	static void dispZNeg(bool sign);
-	static void dispRNeg(bool sign);
 };
 
 #endif /* SLCD_H_ */

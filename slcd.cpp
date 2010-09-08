@@ -45,6 +45,8 @@ void SLCD::initializeHome(){
 	DRO::getYScl();
 	DRO::getZScl();
 	DRO::getRScl();
+
+	forceUpdateHomeValues();
 }
 
 void SLCD::initializeConfig(const int axis){
@@ -73,19 +75,15 @@ int SLCD::sendLCD(char *command, int final){
 	}
 }
 
-void SLCD::updateHomeValues(){
-	dXVal = DRO::getXPos();
-	dYVal = DRO::getYPos();
-	dZVal = DRO::getZPos();
-	dRVal = DRO::getRAng();
-
+void SLCD::updateHomeValues(int axis){
 	int XFlag = DRO::getXFlag();
 	int YFlag = DRO::getYFlag();
 	int ZFlag = DRO::getZFlag();
 	int RFlag = DRO::getRFlag();
 
-	if (XFlag) {
-		if (XFlag == 1){
+	if ((XFlag) || (axis == 1)) {
+		dXVal = DRO::getXPos();
+		if ((XFlag == 1) || (axis == 1)){
 			sendLCD("m 6 ",0);
 			fmtDouble(abs(dXVal),4,cValue,2,9);
 			sendLCD(cValue);
@@ -103,8 +101,9 @@ void SLCD::updateHomeValues(){
 		DRO::clearXFlag();
 	}
 
-	if (YFlag) {
-		if (YFlag == 1){
+	if ((YFlag) || (axis == 2)) {
+		dYVal = DRO::getYPos();
+		if ((YFlag == 1) || (axis == 2)){
 			sendLCD("m 7 ",0);
 			fmtDouble(abs(dYVal),4,cValue,2,9);
 			sendLCD(cValue);
@@ -122,8 +121,9 @@ void SLCD::updateHomeValues(){
 		DRO::clearYFlag();
 	}
 
-	if (ZFlag) {
-		if (ZFlag == 1){
+	if ((ZFlag) || (axis == 3)) {
+		dZVal = DRO::getZPos();
+		if ((ZFlag == 1) || (axis == 3)){
 			sendLCD("m 8 ",0);
 			fmtDouble(abs(dZVal),4,cValue,2,9);
 			sendLCD(cValue);
@@ -141,30 +141,84 @@ void SLCD::updateHomeValues(){
 		DRO::clearZFlag();
 	}
 
-	if (RFlag) {
-		if (RFlag == 1){
-			sendLCD("m 8 ",0);
-			fmtDouble(abs(dRVal),4,cValue,2,9);
+	if ((RFlag) || (axis == 4)) {
+		dRVal = DRO::getRAng();
+		if ((RFlag == 1) || (axis == 4)){
+			sendLCD("m 9 ",0);
+			fmtDouble(abs(dRVal),3,cValue,3,9);
 			sendLCD(cValue);
 		} else if (RFlag == 2) {
-			sendLCD("m 8 ",0);
-			fmtDouble(abs(dRVal),4,cValue,2,9);
+			sendLCD("m 9 ",0);
+			fmtDouble(abs(dRVal),3,cValue,3,9);
 			sendLCD(cValue);
 			dispRNeg(false);
 		} else if (RFlag == 3) {
-			sendLCD("m 8 ",0);
-			fmtDouble(abs(dRVal),4,cValue,2,9);
+			sendLCD("m 9 ",0);
+			fmtDouble(abs(dRVal),3,cValue,3,9);
 			sendLCD(cValue);
 			dispRNeg(true);
 		}
 		DRO::clearRFlag();
 	}
-
 }
 
-void SLCD::updateConfigValues(const double dist){
+void SLCD::forceUpdateHomeValues(){
+	dXVal = DRO::getXPos();
+	dYVal = DRO::getYPos();
+	dZVal = DRO::getZPos();
+	dRVal = DRO::getRAng();
+
+	//Are the values negative?
+	if(dXVal < 0){
+		dispXNeg(TRUE);
+	}
+	else{
+		dispXNeg(FALSE);
+	}
+
+	if(dYVal < 0){
+		dispYNeg(TRUE);
+	}
+	else{
+		dispYNeg(FALSE);
+	}
+
+	if(dZVal < 0){
+		dispZNeg(TRUE);
+	}
+	else{
+		dispZNeg(FALSE);
+	}
+
+	if(dRVal < 0){
+		dispRNeg(TRUE);
+	}
+	else{
+		dispRNeg(FALSE);
+	}
+
+	sendLCD("m 2 ",0);
+	fmtDouble(abs(dXVal),4,cValue,2,9);
+	sendLCD(cValue,0);
+	fmtDouble(abs(dYVal),4,cValue,2,9);
+	sendLCD(" ",0);
+	sendLCD(cValue,0);
+	fmtDouble(abs(dZVal),4,cValue,2,9);
+	sendLCD(" ",0);
+	sendLCD(cValue,0);
+	fmtDouble(abs(dRVal),3,cValue,3,9);
+	sendLCD(" ",0);
+	sendLCD(cValue);
+}
+
+void SLCD::updateConfigValues(const double dist, int axis){
 	sendLCD("m 4 ",0);
-	fmtDouble(dist,4,cValue,2,9);
+
+	if (axis == 4)
+		fmtDouble(dist,3,cValue,3,9);
+	else
+		fmtDouble(dist,4,cValue,2,9);
+
 	sendLCD(cValue);
 }
 

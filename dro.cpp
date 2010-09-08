@@ -293,67 +293,67 @@ void DRO::changeRSign(){
 }
 
 void DRO::incXCnt(){
-	lXCnt++;
 	if (lXCnt == -1)
 		XFlag = 2;
 	else
 		XFlag = 1;
+	lXCnt++;
 }
 
 void DRO::incYCnt(){
-	lYCnt++;
 	if (lYCnt == -1)
 		YFlag = 2;
 	else
 		YFlag = 1;
+	lYCnt++;
 }
 
 void DRO::incZCnt(){
-	lZCnt++;
 	if (lZCnt == -1)
 		ZFlag = 2;
 	else
 		ZFlag = 1;
+	lZCnt++;
 }
 
 void DRO::incRCnt(){
-	lRCnt++;
 	if (lRCnt == -1)
 		RFlag = 2;
 	else
 		RFlag = 1;
+	lRCnt++;
 }
 
 void DRO::decXCnt(){
-	lXCnt--;
 	if (lXCnt == 0)
 		XFlag = 3;
 	else
 		XFlag = 1;
+	lXCnt--;
 }
 
 void DRO::decYCnt(){
-	lYCnt--;
 	if (lYCnt == 0)
 		YFlag = 3;
 	else
 		YFlag = 1;
+	lYCnt--;
 }
 
 void DRO::decZCnt(){
-	lZCnt--;
 	if (lZCnt == 0)
 		ZFlag = 3;
 	else
 		ZFlag = 1;
+	lZCnt--;
 }
 
 void DRO::decRCnt(){
-	lRCnt--;
 	if (lRCnt == 0)
 		RFlag = 3;
 	else
 		RFlag = 1;
+	lRCnt--;
 }
 
 void DRO::ledBlink(){
