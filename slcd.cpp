@@ -81,8 +81,6 @@ void SLCD::updateHomeValues(int axis){
 	int ZFlag = DRO::getZFlag();
 	int RFlag = DRO::getRFlag();
 
-	
-
 	if ((XFlag) || (axis == 1)) {
 		DRO::getXScl();
 		dXVal = DRO::getXPos();

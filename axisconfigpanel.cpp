@@ -118,7 +118,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n1)) {
 		input += "1";
@@ -130,7 +129,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n2)) {
 		input += "2";
@@ -142,7 +140,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n3)) {
 		input += "3";
@@ -154,7 +151,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n4)) {
 		input += "4";
@@ -166,7 +162,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n5)) {
 		input += "5";
@@ -178,7 +173,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n6)) {
 		input += "6";
@@ -190,7 +184,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n7)) {
 		input += "7";
@@ -202,7 +195,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n8)) {
 		input += "8";
@@ -214,7 +206,6 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
 	}
 	else if (!strcmp(command,n9)) {
 		input += "9";
@@ -226,23 +217,28 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
+		Serial.print(input);
 	}
 	else if (!strcmp(command,dec)) {
 		if (input.length() == 0)
 			input += "0.";
 		else
 			input += ".";
-
-		Serial.print(input);
+		
 		if (!isValid(input)){
 			input = input.substring(0,input.length()-1);
 		}
-		SLCD::updateConfigValues(dist, axisNum);
+		Serial.print(input);
 	}
 }
 
 bool AxisConfigPanel::isValid(String value){
+	/*int decIndex = value.indexOf('.');
+	if (decIndex > 0){
+		if (value.substring(decIndex,value.length()).indexOf('.') > 0)
+			return false;
+	}*/
+	
 	if (axisNum != 4) {
 		if (value.length() < 8){
 			if (value.indexOf('.') < 0){
