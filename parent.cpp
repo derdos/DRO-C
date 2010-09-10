@@ -32,7 +32,7 @@ void Parent::run(){
 	pinMode(13, OUTPUT);
 	boolean led = true;
 	delay(100);
-
+	
 	long XTemp = 0;
 	long YTemp = 0;
 	long ZTemp = 0;
@@ -43,6 +43,8 @@ void Parent::run(){
 		YTemp = DRO::getYCnt();
 		ZTemp = DRO::getZCnt();
 		RTemp = DRO::getRCnt();
+		
+		DRO::setZScl(0.0001);
 
 		delay(50);
 

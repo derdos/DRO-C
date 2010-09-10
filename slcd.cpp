@@ -214,10 +214,11 @@ void SLCD::forceUpdateHomeValues(){
 void SLCD::updateConfigValues(const double dist, int axis){
 	sendLCD("m 4 ",0);
 
-	if (axis == 4)
+	if (axis == 4) {
 		fmtDouble(dist,3,cValue,3,9);
-	else
+	} else {
 		fmtDouble(dist,4,cValue,2,9);
+	}
 
 	sendLCD(cValue);
 }

@@ -8,7 +8,6 @@
 #ifndef AXISCONFIGPANEL_H_
 #define AXISCONFIGPANEL_H_
 #include "parent.h"
-#include "WString.h"
 
 class AxisConfigPanel : public Panel{
 private:
@@ -18,6 +17,7 @@ private:
 	double dist;
 	Parent *parent;
 	String input;
+	char *inputCharArr;
 public:
 	AxisConfigPanel(const int axis, Parent *newParent);
 
