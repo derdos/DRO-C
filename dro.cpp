@@ -116,7 +116,7 @@ double DRO::getZPos(){
 }
 
 double DRO::getRAng(){
-	dRAng = lRCnt * dZScl;
+	dRAng = lRCnt * dRScl;
 	if(dRAng > 999.999)
 		dRAng = 999.999;
 	else if (dRAng < -999.999)
