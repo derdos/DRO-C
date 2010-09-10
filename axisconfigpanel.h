@@ -17,7 +17,7 @@ private:
 	double dist;
 	Parent *parent;
 	String input;
-	char inputCharArr[8];
+	char inputCharArr[9];
 public:
 	AxisConfigPanel(const int axis, Parent *newParent);
 

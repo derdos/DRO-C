@@ -122,11 +122,9 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n1)) {
 		input += "1";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
-			Serial.println(input);
-			Serial.println(dist);
 		}
 		else {
 			input = input.substring(0,input.length()-1);
@@ -135,7 +133,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n2)) {
 		input += "2";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -146,7 +144,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n3)) {
 		input += "3";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -157,7 +155,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n4)) {
 		input += "4";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -168,7 +166,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n5)) {
 		input += "5";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -179,7 +177,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n6)) {
 		input += "6";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -190,7 +188,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n7)) {
 		input += "7";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -201,7 +199,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n8)) {
 		input += "8";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -212,7 +210,7 @@ void AxisConfigPanel::update(char *command){
 	else if (!strcmp(command,n9)) {
 		input += "9";
 		if (isValid(input)){
-			input.toCharArray(inputCharArr,7);
+			input.toCharArray(inputCharArr,8);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
 		}
@@ -235,13 +233,9 @@ void AxisConfigPanel::update(char *command){
 }
 
 bool AxisConfigPanel::isValid(String value){
-	/*
-	int decIndex = value.indexOf('.');
-	if (decIndex > 0){
-		if (value.substring(decIndex,value.length()).indexOf('.') > 0)
-			return false;
-	}
-	*/
+	if ((value.indexOf('.') > 0) && 
+		(value.indexOf('.') != value.lastIndexOf('.')))
+		return false;
 	
 	if (axisNum != 4) {
 		if (value.length() < 8){
