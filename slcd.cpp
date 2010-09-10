@@ -222,14 +222,17 @@ void SLCD::forceUpdateHomeValues(){
 
 void SLCD::updateConfigValues(const double dist, int axis){
 	sendLCD("m 4 ",0);
-
+	Serial.println("Starting Config Values Update");
 	if (axis == 4) {
 		fmtDouble(dist,3,cValue,3,9);
 	} else {
 		fmtDouble(dist,4,cValue,2,9);
 	}
-
+	
+	Serial.print("cValue: ");
+	Serial.println(cValue);
 	sendLCD(cValue);
+	Serial.println("Config Values Updated");
 }
 
 void SLCD::clearScreen(){

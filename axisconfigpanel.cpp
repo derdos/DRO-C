@@ -125,6 +125,8 @@ void AxisConfigPanel::update(char *command){
 			input.toCharArray(inputCharArr,7);
 			dist = atof(inputCharArr);
 			SLCD::updateConfigValues(dist,axisNum);
+			Serial.println(input);
+			Serial.println(dist);
 		}
 		else {
 			input = input.substring(0,input.length()-1);
@@ -233,11 +235,13 @@ void AxisConfigPanel::update(char *command){
 }
 
 bool AxisConfigPanel::isValid(String value){
-	/*int decIndex = value.indexOf('.');
+	/*
+	int decIndex = value.indexOf('.');
 	if (decIndex > 0){
 		if (value.substring(decIndex,value.length()).indexOf('.') > 0)
 			return false;
-	}*/
+	}
+	*/
 	
 	if (axisNum != 4) {
 		if (value.length() < 8){

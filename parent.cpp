@@ -62,7 +62,7 @@ void Parent::run(){
 				sReadBuffer[2] = Serial3.read();
 				sReadBuffer[3] = Serial3.read();
 				Serial3.flush();
-				Serial.println(sReadBuffer);
+				//Serial.println(sReadBuffer);
 				delay(20);
 			}
 		}
