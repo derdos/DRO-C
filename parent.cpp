@@ -43,8 +43,6 @@ void Parent::run(){
 		YTemp = DRO::getYCnt();
 		ZTemp = DRO::getZCnt();
 		RTemp = DRO::getRCnt();
-		
-		DRO::setZScl(0.0001);
 
 		delay(50);
 

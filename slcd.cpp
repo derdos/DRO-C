@@ -81,7 +81,10 @@ void SLCD::updateHomeValues(int axis){
 	int ZFlag = DRO::getZFlag();
 	int RFlag = DRO::getRFlag();
 
+	
+
 	if ((XFlag) || (axis == 1)) {
+		DRO::getXScl();
 		dXVal = DRO::getXPos();
 		if ((XFlag == 1) || (axis == 1)){
 			sendLCD("m 6 ",0);
@@ -102,6 +105,7 @@ void SLCD::updateHomeValues(int axis){
 	}
 
 	if ((YFlag) || (axis == 2)) {
+		DRO::getYScl();
 		dYVal = DRO::getYPos();
 		if ((YFlag == 1) || (axis == 2)){
 			sendLCD("m 7 ",0);
@@ -122,6 +126,7 @@ void SLCD::updateHomeValues(int axis){
 	}
 
 	if ((ZFlag) || (axis == 3)) {
+		DRO::getZScl();
 		dZVal = DRO::getZPos();
 		if ((ZFlag == 1) || (axis == 3)){
 			sendLCD("m 8 ",0);
@@ -142,6 +147,7 @@ void SLCD::updateHomeValues(int axis){
 	}
 
 	if ((RFlag) || (axis == 4)) {
+		DRO::getRScl();
 		dRVal = DRO::getRAng();
 		if ((RFlag == 1) || (axis == 4)){
 			sendLCD("m 9 ",0);
@@ -167,6 +173,11 @@ void SLCD::forceUpdateHomeValues(){
 	dYVal = DRO::getYPos();
 	dZVal = DRO::getZPos();
 	dRVal = DRO::getRAng();
+	
+	DRO::getXScl();
+	DRO::getYScl();
+	DRO::getZScl();
+	DRO::getRScl();
 
 	//Are the values negative?
 	if(dXVal < 0){

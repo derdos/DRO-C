@@ -41,7 +41,7 @@ void HomePanel::initialize(){
 
 void HomePanel::update(char *command){
 	if (!strcmp(command,"updt")){
-		SLCD::updateHomeValues();
+		SLCD::updateHomeValues();	
 	} else if (!strcmp(command,XConf)) {
 		delay(20);
 		parent->pushPanel(&XConfig);
