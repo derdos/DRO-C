@@ -88,6 +88,10 @@ void SLCD::updateHomeValues(int axis){
 			sendLCD("m 6 ",0);
 			fmtDouble(abs(dXVal),4,cValue,2,9);
 			sendLCD(cValue);
+			if (dXVal > 0)
+				dispXNeg(false);
+			else
+				dispXNeg(true);
 		} else if (XFlag == 2) {
 			sendLCD("m 6 ",0);
 			fmtDouble(abs(dXVal),4,cValue,2,9);
@@ -109,6 +113,10 @@ void SLCD::updateHomeValues(int axis){
 			sendLCD("m 7 ",0);
 			fmtDouble(abs(dYVal),4,cValue,2,9);
 			sendLCD(cValue);
+			if (dYVal > 0)
+				dispYNeg(false);
+			else
+				dispYNeg(true);
 		} else if (YFlag == 2) {
 			sendLCD("m 7 ",0);
 			fmtDouble(abs(dYVal),4,cValue,2,9);
@@ -130,6 +138,10 @@ void SLCD::updateHomeValues(int axis){
 			sendLCD("m 8 ",0);
 			fmtDouble(abs(dZVal),4,cValue,2,9);
 			sendLCD(cValue);
+			if (dZVal > 0)
+				dispZNeg(false);
+			else
+				dispZNeg(true);
 		} else if (ZFlag == 2) {
 			sendLCD("m 8 ",0);
 			fmtDouble(abs(dZVal),4,cValue,2,9);
@@ -151,6 +163,10 @@ void SLCD::updateHomeValues(int axis){
 			sendLCD("m 9 ",0);
 			fmtDouble(abs(dRVal),3,cValue,3,9);
 			sendLCD(cValue);
+			if (dRVal > 0)
+				dispRNeg(false);
+			else
+				dispRNeg(true);
 		} else if (RFlag == 2) {
 			sendLCD("m 9 ",0);
 			fmtDouble(abs(dRVal),3,cValue,3,9);
