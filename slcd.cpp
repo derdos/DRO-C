@@ -285,6 +285,53 @@ void SLCD::dispRNeg(bool sign){
 		sendLCD("r 245 195 255 200 1 fff");
 }
 
+
+void SLCD::displaySetup(){
+	sendLCD("m 5");
+}
+
+void SLCD::updateSetup(){
+	int units = DRO::getUnits();
+	int volume = DRO::getVolume();
+	
+	if (units == 1) { 	   //Centimeter
+		sendLCD("m 11:c");
+	} 
+	else if (units == 0) { //Inches
+		sendLCD("m 11:i");
+	}
+	
+	if (volume == 0) 	  //Silent
+		sendLCD("m 10:s");
+	else if (volume == 1) //Quiet
+		sendLCD("m 10:q");
+	else if (volume == 2) //Loud
+		sendLCD("m 10:l");
+}
+
+void SLCD::setVolume(int newVolume){
+	if (newVolume == 2){
+		sendLCD("bvs 200");
+		sendLCD("m 10:l");
+	}
+	else if (newVolume == 1){
+		sendLCD("bvs 100");
+		sendLCD("m 10:q");
+	}
+	else if (newVolume == 0){
+		sendLCD("bvs 0");
+		sendLCD("m 10:s");
+	}
+}
+
+void SLCD::setUnits(int newUnits){
+	if (newUnits == 0)
+		sendLCD("m 11:i");
+	else if (newUnits == 1)
+		sendLCD("m 11:c");
+}
+
+
 //
 // Produce a formatted string in a buffer corresponding to the value provided.
 // If the 'width' parameter is non-zero, the value will be padded with leading

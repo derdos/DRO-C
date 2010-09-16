@@ -28,8 +28,12 @@ public:
 	static void updateConfigValues(const double dist, int axis);
 	static void displayAxisConfig(int axis);
 	static void displaySetup();
+	static void updateSetup();
 	static void clearScreen();
+	static void setVolume(int newVolume);
+	static void setUnits(int newUnits);
 	static int sendLCD(char *command, int final = 1);
+
 
 	static void dispXNeg(bool sign);
 	static void dispYNeg(bool sign);

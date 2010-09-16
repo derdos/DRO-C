@@ -76,9 +76,22 @@ int DRO::getVolume(){
 }
 
 void DRO::setUnits(int newUnit){
-	if ((newUnit <= 1)&(newUnit >= 0))
+	if ((newUnit <= 1) && (newUnit >= 0)){
+		if ((iUnits == INCH) && (newUnit == CM)) {
+			setXScl(getXScl()*2.54);
+			setYScl(getYScl()*2.54);
+			setZScl(getZScl()*2.54);
+			setRScl(getRScl()*2.54);
+		}
+		else if ((iUnits == CM) && (newUnit == INCH)) {
+			setXScl(getXScl()/2.54);
+			setYScl(getYScl()/2.54);
+			setZScl(getZScl()/2.54);
+			setRScl(getRScl()/2.54);
+		}
 		iUnits = newUnit;
 		eSettings.writeInt(UNIT_ADDR,iUnits);
+	}
 }
 
 void DRO::setVolume(int newVolume){

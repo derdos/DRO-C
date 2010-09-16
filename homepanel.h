@@ -11,6 +11,7 @@
 #include <WString.h>
 #include "panel.h"
 #include "axisconfigpanel.h"
+#include "setuppanel.h"
 #include "parent.h"
 
 class HomePanel : public Panel {
@@ -20,6 +21,7 @@ private:
 	AxisConfigPanel YConfig;
 	AxisConfigPanel ZConfig;
 	AxisConfigPanel RConfig;
+	SetupPanel setupPanel;
 
 public:
 	HomePanel(Parent *parent);

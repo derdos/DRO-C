@@ -89,7 +89,7 @@ void Parent::pushPanel(Panel *panel){
 void Parent::popPanel(){
 	curPanel = lastPanel;
 	lastPanel = NULL;
-	delay(20);
+	delay(10);
 	curPanel->initialize();
 	Serial.println("Popped Panel");
 }

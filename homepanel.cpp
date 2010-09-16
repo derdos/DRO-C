@@ -21,6 +21,9 @@ const char * YConf = "x171";
 const char * ZConf = "x172";
 const char * RConf = "x173";
 
+const char * Setup  	= "x165";
+const char * Calibrate  = "x166";
+
 const int AxisX = 1;
 const int AxisY = 2;
 const int AxisZ = 3;
@@ -31,7 +34,8 @@ HomePanel::HomePanel(Parent *parent) :
 		XConfig(1,parent),
 		YConfig(2,parent),
 		ZConfig(3,parent),
-		RConfig(4,parent){
+		RConfig(4,parent),
+		setupPanel(parent){
 }
 
 void HomePanel::initialize(){
@@ -70,5 +74,8 @@ void HomePanel::update(char *command){
 		DRO::zeroR();
 		SLCD::updateHomeValues(4);
 		SLCD::dispRNeg(false);
+	} else if (!strcmp(command,Setup)) {
+		delay(20);
+		parent->pushPanel(&setupPanel);
 	}
 }
