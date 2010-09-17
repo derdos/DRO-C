@@ -76,9 +76,22 @@ int DRO::getVolume(){
 }
 
 void DRO::setUnits(int newUnit){
-	if ((newUnit <= 1)&(newUnit >= 0))
+	if ((newUnit <= 1) && (newUnit >= 0)){
+		if ((iUnits == INCH) && (newUnit == CM)) {
+			setXScl(getXScl()*2.54);
+			setYScl(getYScl()*2.54);
+			setZScl(getZScl()*2.54);
+			setRScl(getRScl()*2.54);
+		}
+		else if ((iUnits == CM) && (newUnit == INCH)) {
+			setXScl(getXScl()/2.54);
+			setYScl(getYScl()/2.54);
+			setZScl(getZScl()/2.54);
+			setRScl(getRScl()/2.54);
+		}
 		iUnits = newUnit;
 		eSettings.writeInt(UNIT_ADDR,iUnits);
+	}
 }
 
 void DRO::setVolume(int newVolume){
@@ -116,7 +129,7 @@ double DRO::getZPos(){
 }
 
 double DRO::getRAng(){
-	dRAng = lRCnt * dZScl;
+	dRAng = lRCnt * dRScl;
 	if(dRAng > 999.999)
 		dRAng = 999.999;
 	else if (dRAng < -999.999)
@@ -293,67 +306,67 @@ void DRO::changeRSign(){
 }
 
 void DRO::incXCnt(){
-	lXCnt++;
 	if (lXCnt == -1)
 		XFlag = 2;
 	else
 		XFlag = 1;
+	lXCnt++;
 }
 
 void DRO::incYCnt(){
-	lYCnt++;
 	if (lYCnt == -1)
 		YFlag = 2;
 	else
 		YFlag = 1;
+	lYCnt++;
 }
 
 void DRO::incZCnt(){
-	lZCnt++;
 	if (lZCnt == -1)
 		ZFlag = 2;
 	else
 		ZFlag = 1;
+	lZCnt++;
 }
 
 void DRO::incRCnt(){
-	lRCnt++;
 	if (lRCnt == -1)
 		RFlag = 2;
 	else
 		RFlag = 1;
+	lRCnt++;
 }
 
 void DRO::decXCnt(){
-	lXCnt--;
 	if (lXCnt == 0)
 		XFlag = 3;
 	else
 		XFlag = 1;
+	lXCnt--;
 }
 
 void DRO::decYCnt(){
-	lYCnt--;
 	if (lYCnt == 0)
 		YFlag = 3;
 	else
 		YFlag = 1;
+	lYCnt--;
 }
 
 void DRO::decZCnt(){
-	lZCnt--;
 	if (lZCnt == 0)
 		ZFlag = 3;
 	else
 		ZFlag = 1;
+	lZCnt--;
 }
 
 void DRO::decRCnt(){
-	lRCnt--;
 	if (lRCnt == 0)
 		RFlag = 3;
 	else
 		RFlag = 1;
+	lRCnt--;
 }
 
 void DRO::ledBlink(){

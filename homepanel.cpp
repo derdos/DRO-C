@@ -21,6 +21,9 @@ const char * YConf = "x171";
 const char * ZConf = "x172";
 const char * RConf = "x173";
 
+const char * Setup  	= "x165";
+const char * Calibrate  = "x166";
+
 const int AxisX = 1;
 const int AxisY = 2;
 const int AxisZ = 3;
@@ -31,7 +34,8 @@ HomePanel::HomePanel(Parent *parent) :
 		XConfig(1,parent),
 		YConfig(2,parent),
 		ZConfig(3,parent),
-		RConfig(4,parent){
+		RConfig(4,parent),
+		setupPanel(parent){
 }
 
 void HomePanel::initialize(){
@@ -41,38 +45,37 @@ void HomePanel::initialize(){
 
 void HomePanel::update(char *command){
 	if (!strcmp(command,"updt")){
-		SLCD::updateHomeValues();
+		SLCD::updateHomeValues();	
 	} else if (!strcmp(command,XConf)) {
-		delay(100);
+		delay(20);
 		parent->pushPanel(&XConfig);
-		SLCD::clearScreen();
-		SLCD::initializeConfig(1);
 	} else if (!strcmp(command,YConf)) {
-		delay(100);
+		delay(20);
 		parent->pushPanel(&YConfig);
-		SLCD::clearScreen();
-		SLCD::initializeConfig(2);
 	} else if (!strcmp(command,ZConf)) {
-		delay(100);
+		delay(20);
 		parent->pushPanel(&ZConfig);
-		SLCD::clearScreen();
-		SLCD::initializeConfig(3);
 	} else if (!strcmp(command,RConf)) {
-		delay(100);
+		delay(20);
 		parent->pushPanel(&RConfig);
-		SLCD::clearScreen();
-		SLCD::initializeConfig(4);
 	} else if (!strcmp(command,zeroX)) {
 		DRO::zeroX();
-		SLCD::updateHomeValues();
+		SLCD::updateHomeValues(1);
+		SLCD::dispXNeg(false);
 	} else if (!strcmp(command,zeroY)) {
 		DRO::zeroY();
-		SLCD::updateHomeValues();
+		SLCD::updateHomeValues(2);
+		SLCD::dispYNeg(false);
 	} else if (!strcmp(command,zeroZ)) {
 		DRO::zeroZ();
-		SLCD::updateHomeValues();
+		SLCD::updateHomeValues(3);
+		SLCD::dispZNeg(false);
 	} else if (!strcmp(command,zeroR)) {
 		DRO::zeroR();
-		SLCD::updateHomeValues();
+		SLCD::updateHomeValues(4);
+		SLCD::dispRNeg(false);
+	} else if (!strcmp(command,Setup)) {
+		delay(20);
+		parent->pushPanel(&setupPanel);
 	}
 }

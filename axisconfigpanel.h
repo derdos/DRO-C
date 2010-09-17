@@ -12,14 +12,20 @@
 class AxisConfigPanel : public Panel{
 private:
 	char axisName;
+	int axisNum;
 	long startCount;
 	double dist;
 	Parent *parent;
+	String input;
+	char inputCharArr[9];
 public:
 	AxisConfigPanel(const int axis, Parent *newParent);
 
 	virtual void initialize();
 	virtual void update(char *command);
+
+	bool isValid(String value);
+	bool containsDecimal(String value);
 };
 
 #endif  /* AXISCONFIGPANEL_H_ */

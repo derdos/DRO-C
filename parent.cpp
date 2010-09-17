@@ -32,7 +32,7 @@ void Parent::run(){
 	pinMode(13, OUTPUT);
 	boolean led = true;
 	delay(100);
-
+	
 	long XTemp = 0;
 	long YTemp = 0;
 	long ZTemp = 0;
@@ -44,7 +44,7 @@ void Parent::run(){
 		ZTemp = DRO::getZCnt();
 		RTemp = DRO::getRCnt();
 
-		delay(20);
+		delay(50);
 
 		//Blink the led to show that we're updating
 		digitalWrite(13, led);
@@ -62,7 +62,7 @@ void Parent::run(){
 				sReadBuffer[2] = Serial3.read();
 				sReadBuffer[3] = Serial3.read();
 				Serial3.flush();
-				Serial.println(sReadBuffer);
+				//Serial.println(sReadBuffer);
 				delay(20);
 			}
 		}
@@ -89,7 +89,7 @@ void Parent::pushPanel(Panel *panel){
 void Parent::popPanel(){
 	curPanel = lastPanel;
 	lastPanel = NULL;
-	delay(20);
+	delay(10);
 	curPanel->initialize();
 	Serial.println("Popped Panel");
 }
