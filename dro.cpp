@@ -288,6 +288,7 @@ void DRO::zeroR(){
 
 void DRO::changeXSign(){
 	dXScl = -dXScl;
+	eSettings.writeDouble(XSCL_ADDR,dXScl);
 }
 
 void DRO::changeYSign(){
