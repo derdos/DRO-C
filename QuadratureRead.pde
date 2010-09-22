@@ -1,7 +1,7 @@
 #include <homepanel.h>
 #include <panel.h>
 #include <parent.h>
-#include <EEPROM.h>
+#include <EEPROMmod.h>
 #include <dro.h>
 #include <slcd.h>
  

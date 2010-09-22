@@ -9,7 +9,7 @@
 
 const double MIN_SCL = 0.00001;
 
-EEPROMClass DRO::eSettings; //Class for writing and reading from EEPROM
+EEPROMClassMod DRO::eSettings; //Class for writing and reading from EEPROM
 
 int DRO::XFlag;
 int DRO::YFlag;

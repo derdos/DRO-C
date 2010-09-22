@@ -9,7 +9,7 @@
 #define DRO_H_
 
 #include <WProgram.h>
-#include <EEPROM.h>
+#include <EEPROMmod.h>
 
 #define INCH	0
 #define CM		1
@@ -97,7 +97,7 @@ public:
 	static void clearRFlag();
 
 	static void ledBlink();
-	static EEPROMClass eSettings; //Class for writing and reading from EEPROM
+	static EEPROMClassMod eSettings; //Class for writing and reading from EEPROM
 
 private:
 	static int ledPin;

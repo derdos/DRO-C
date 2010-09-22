@@ -23,7 +23,7 @@
 
 #include <avr/eeprom.h>
 #include "WConstants.h"
-#include "EEPROM.h"
+#include "EEPROMmod.h"
 
 /******************************************************************************
  * Definitions
