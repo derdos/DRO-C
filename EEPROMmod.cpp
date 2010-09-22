@@ -37,17 +37,17 @@
  * User API
  ******************************************************************************/
 
-uint8_t EEPROMClass::read(int address)
+uint8_t EEPROMClassMod::read(int address)
 {
 	return eeprom_read_byte((unsigned char *) address);
 }
 
-void EEPROMClass::write(int address, uint8_t value)
+void EEPROMClassMod::write(int address, uint8_t value)
 {
 	eeprom_write_byte((unsigned char *) address, value);
 }
 
-int EEPROMClass::writeDouble(int ee, const double value)
+int EEPROMClassMod::writeDouble(int ee, const double value)
 {
     const byte* p = (const byte*)(const void*)&value;
     int i;
@@ -56,7 +56,7 @@ int EEPROMClass::writeDouble(int ee, const double value)
     return i;
 }
 
-double EEPROMClass::readDouble(int ee)
+double EEPROMClassMod::readDouble(int ee)
 {
     double value = 0.0;
     byte* p = (byte*)(void*)&value;
@@ -65,7 +65,7 @@ double EEPROMClass::readDouble(int ee)
     return value;
 } 
 
-int EEPROMClass::writeInt(int ee, const int value)
+int EEPROMClassMod::writeInt(int ee, const int value)
 {
     const byte* p = (const byte*)(const void*)&value;
     int i;
@@ -74,7 +74,7 @@ int EEPROMClass::writeInt(int ee, const int value)
     return i;
 }
 
-int EEPROMClass::readInt(int ee)
+int EEPROMClassMod::readInt(int ee)
 {
     int value = 0;
     byte* p = (byte*)(void*)&value;
@@ -83,4 +83,4 @@ int EEPROMClass::readInt(int ee)
     return value;
 }
 
-EEPROMClass EEPROM;
+EEPROMClassMod EEPROM;

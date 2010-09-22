@@ -22,7 +22,7 @@
 
 #include <inttypes.h>
 
-class EEPROMClass
+class EEPROMClassMod
 {
   public:
     uint8_t read(int);
@@ -33,7 +33,7 @@ class EEPROMClass
 	int writeInt(int ee, const int value);
 };
 
-extern EEPROMClass EEPROM;
+extern EEPROMClassMod EEPROM;
 
 #endif
 
