@@ -54,15 +54,31 @@ void SLCD::initializeConfig(const int axis){
 	if (axis == 1){
 		sendLCD("m 3:x");
 		sendLCD("m 4 00.0000");
+		if(DRO::getUnits())
+			sendLCD("m 12:c");
+		else
+			sendLCD("m 12:i");
 	} else if (axis == 2){
 		sendLCD("m 3:y");
 		sendLCD("m 4 00.0000");
+		if(DRO::getUnits())
+			sendLCD("m 12:c");
+		else
+			sendLCD("m 12:i");
 	} else if (axis == 3){
 		sendLCD("m 3:z");
 		sendLCD("m 4 00.0000");
+		if(DRO::getUnits())
+			sendLCD("m 12:c");
+		else
+			sendLCD("m 12:i");
 	} else if (axis == 4){
 		sendLCD("m 3:r");
 		sendLCD("m 4 000.000");
+		if(DRO::getUnits())
+			sendLCD("m 12:c");
+		else
+			sendLCD("m 12:i");
 	}
 }
 
