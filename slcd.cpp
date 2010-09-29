@@ -46,7 +46,7 @@ void SLCD::initializeHome(){
 	DRO::getZScl();
 	DRO::getRScl();
 	
-	setVolume(DRO::getVolume());
+	sendVolume(DRO::getVolume());
 	forceUpdateHomeValues();
 }
 
@@ -340,6 +340,20 @@ void SLCD::setVolume(int newVolume){
 		sendLCD("m 10:s");
 	}
 }
+
+void SLCD::sendVolume(int newVolume){
+	if (newVolume == 2){
+		sendLCD("bvs 200");
+	}
+	else if (newVolume == 1){
+		sendLCD("bvs 100");
+	}
+	else if (newVolume == 0){
+		sendLCD("bvs 0");
+	}
+}
+
+
 
 void SLCD::setUnits(int newUnits){
 	if (newUnits == 0)

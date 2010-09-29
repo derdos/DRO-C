@@ -31,6 +31,7 @@ public:
 	static void updateSetup();
 	static void clearScreen();
 	static void setVolume(int newVolume);
+	static void sendVolume(int newVolume);
 	static void setUnits(int newUnits);
 	static int sendLCD(char *command, int final = 1);
 
