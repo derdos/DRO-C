@@ -63,6 +63,8 @@ DRO::DRO(){
 	YFlag = 0;
 	ZFlag = 0;
 	RFlag = 0;
+	
+	setVolume(getVolume());
 }
 
 int DRO::getUnits(){
