@@ -45,7 +45,8 @@ void SLCD::initializeHome(){
 	DRO::getYScl();
 	DRO::getZScl();
 	DRO::getRScl();
-
+	
+	setVolume(DRO::getVolume());
 	forceUpdateHomeValues();
 }
 
