@@ -28,10 +28,8 @@ JogPanel::JogPanel(Parent *newParent){
 }
 
 void JogPanel::initialize(){
-	SLCD::displaySetup();
-	SLCD::updateSetup();
-	SLCD::setVolume(DRO::getVolume());
-	SLCD::setUnits(DRO::getUnits());
+	SLCD::displayJog();
+	SLCD::updateJog();
 }
 
 void JogPanel::update(char *command){

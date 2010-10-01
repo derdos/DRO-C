@@ -179,8 +179,9 @@ void Parent::jogUpdate(){
 				Serial.println("A2-");
 	}
 
-	if(((upVal != upPrev) && (upVal == HIGH)) ||
-	   ((dnVal != dnPrev) && (dnVal == HIGH))){
+
+	if(((ltVal != ltPrev) && (ltVal == HIGH)) ||
+	   ((rtVal != rtPrev) && (rtVal == HIGH))){
 		if (axis1 == 0)
 			Serial.println("X10");
 		else if (axis2 == 1)
@@ -190,7 +191,7 @@ void Parent::jogUpdate(){
 		else if (axis2 == 3)
 			Serial.println("A10");
 	}
-	else if ((upVal != upPrev) && (upVal == LOW) && (dnVal == HIGH)){
+	else if ((ltVal != ltPrev) && (ltVal == LOW) && (rtVal == HIGH)){
 		if (axis1 == 0)
 			if (xSgn)
 				Serial.println("X1+");
@@ -212,7 +213,7 @@ void Parent::jogUpdate(){
 			else
 				Serial.println("A1-");
 	}
-	else if ((dnVal != dnPrev) && (dnVal == LOW) && (upVal == HIGH)){
+	else if ((rtVal != rtPrev) && (rtVal == LOW) && (ltVal == HIGH)){
 		if (axis1 == 0)
 			if (!xSgn)
 				Serial.println("X1+");
@@ -233,5 +234,11 @@ void Parent::jogUpdate(){
 				Serial.println("A1+");
 			else
 				Serial.println("A1-");
+	}
+
+	if ((upVal == LOW) || (dnVal == LOW) || (ltVal == LOW) || (rtVal == LOW)){
+		digitalWrite(13,1);
+	} else {
+		digitalWrite(13,0);
 	}
 }
