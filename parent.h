@@ -22,15 +22,15 @@ private:
 	Panel *homePanel;
 	char sReadBuffer[5];
 
-	int upVal = 0;
-	int dnVal = 0;
-	int rtVal = 0;
-	int ltVal = 0;
+	int upVal;
+	int dnVal;
+	int rtVal;
+	int ltVal;
 
-	int upPrev = 0;
-	int dnPrev = 0;
-	int rtPrev = 0;
-	int ltPrev = 0;
+	int upPrev;
+	int dnPrev;
+	int rtPrev;
+	int ltPrev;
 
 public:
 	Parent();

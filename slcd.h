@@ -30,7 +30,7 @@ public:
 	static void displaySetup();
 	static void updateSetup();
 	static void displayJog();
-	stativ void updateJog();
+	static void updateJog();
 	static void clearScreen();
 	static void setVolume(int newVolume);
 	static void sendVolume(int newVolume);

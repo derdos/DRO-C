@@ -17,6 +17,16 @@ Parent::Parent(){
 	cEOL = '\r';
 	//Open the serial port
 	Serial3.begin(115200);
+
+	upVal = 0;
+	dnVal = 0;
+	rtVal = 0;
+	ltVal = 0;
+
+	upPrev = 0;
+	dnPrev = 0;
+	rtPrev = 0;
+	ltPrev = 0;
 }
 
 void Parent::setHomePanel(Panel *panel){
@@ -43,6 +53,8 @@ void Parent::run(){
 		YTemp = DRO::getYCnt();
 		ZTemp = DRO::getZCnt();
 		RTemp = DRO::getRCnt();
+
+		jogUpdate();
 
 		//Blink the led to show that we're updating
 		//digitalWrite(13, led);
@@ -98,18 +110,18 @@ void Parent::jogUpdate(){
 	rtPrev = rtVal;
 	ltPrev = ltVal;
 
-	xSgn = DRO::getXSign();
-	ySgn = DRO::getYSign();
-	zSgn = DRO::getZSign();
-	rSgn = DRO::getRSign();
+	int xSgn = DRO::getXSign();
+	int ySgn = DRO::getYSign();
+	int zSgn = DRO::getZSign();
+	int rSgn = DRO::getRSign();
 
 	upVal = digitalRead(A10);
 	dnVal = digitalRead(A8);
 	rtVal = digitalRead(A11);
 	ltVal = digitalRead(A9);
 
-	axis1 = DRO::getJogAxis1();
-	axis2 = DRO::getJogAxis2();
+	int axis1 = DRO::getJogAxis1();
+	int axis2 = DRO::getJogAxis2();
 
 	if(((upVal != upPrev) && (upVal == HIGH)) ||
 	   ((dnVal != dnPrev) && (dnVal == HIGH))){
