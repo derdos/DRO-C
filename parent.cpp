@@ -136,44 +136,44 @@ void Parent::jogUpdate(){
 	}
 	else if ((upVal != upPrev) && (upVal == LOW) && (dnVal == HIGH)){
 		if (axis2 == 0)
-			if (xSgn)
+			if (xSgn > 0)
 				Serial.println("X2+");
 			else
 				Serial.println("X2-");
 		else if (axis2 == 1)
-			if (ySgn)
+			if (ySgn > 0)
 				Serial.println("Y2+");
 			else
 				Serial.println("Y2-");
 		else if (axis2 == 2)
-			if (zSgn)
+			if (zSgn > 0)
 				Serial.println("Z2+");
 			else
 				Serial.println("Z2-");
 		else if (axis2 == 3)
-			if (rSgn)
+			if (rSgn > 0)
 				Serial.println("A2+");
 			else
 				Serial.println("A2-");
 	}
 	else if ((dnVal != dnPrev) && (dnVal == LOW) && (upVal == HIGH)){
 		if (axis2 == 0)
-			if (!xSgn)
+			if (xSgn < 0)
 				Serial.println("X2+");
 			else
 				Serial.println("X2-");
 		else if (axis2 == 1)
-			if (!ySgn)
+			if (ySgn < 0)
 				Serial.println("Y2+");
 			else
 				Serial.println("Y2-");
 		else if (axis2 == 2)
-			if (!zSgn)
+			if (zSgn < 0)
 				Serial.println("Z2+");
 			else
 				Serial.println("Z2-");
 		else if (axis2 == 3)
-			if (!rSgn)
+			if (rSgn < 0)
 				Serial.println("A2+");
 			else
 				Serial.println("A2-");
@@ -184,53 +184,53 @@ void Parent::jogUpdate(){
 	   ((rtVal != rtPrev) && (rtVal == HIGH))){
 		if (axis1 == 0)
 			Serial.println("X10");
-		else if (axis2 == 1)
+		else if (axis1 == 1)
 			Serial.println("Y10");
-		else if (axis2 == 2)
+		else if (axis1 == 2)
 			Serial.println("Z10");
-		else if (axis2 == 3)
+		else if (axis1 == 3)
 			Serial.println("A10");
 	}
 	else if ((ltVal != ltPrev) && (ltVal == LOW) && (rtVal == HIGH)){
 		if (axis1 == 0)
-			if (xSgn)
+			if (xSgn > 0)
 				Serial.println("X1+");
 			else
 				Serial.println("X1-");
 		else if (axis1 == 1)
-			if (ySgn)
+			if (ySgn > 0)
 				Serial.println("Y1+");
 			else
 				Serial.println("Y1-");
 		else if (axis1 == 2)
-			if (zSgn)
+			if (zSgn > 0)
 				Serial.println("Z1+");
 			else
 				Serial.println("Z1-");
 		else if (axis1 == 3)
-			if (rSgn)
+			if (rSgn > 0)
 				Serial.println("A1+");
 			else
 				Serial.println("A1-");
 	}
 	else if ((rtVal != rtPrev) && (rtVal == LOW) && (ltVal == HIGH)){
 		if (axis1 == 0)
-			if (!xSgn)
+			if (xSgn < 0)
 				Serial.println("X1+");
 			else
 				Serial.println("X1-");
 		else if (axis1 == 1)
-			if (!ySgn)
+			if (ySgn < 0)
 				Serial.println("Y1+");
 			else
 				Serial.println("Y1-");
 		else if (axis1 == 2)
-			if (!zSgn)
+			if (zSgn < 0)
 				Serial.println("Z1+");
 			else
 				Serial.println("Z1-");
 		else if (axis1 == 3)
-			if (!rSgn)
+			if (rSgn < 0)
 				Serial.println("A1+");
 			else
 				Serial.println("A1-");
