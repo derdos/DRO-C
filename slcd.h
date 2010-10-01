@@ -29,6 +29,8 @@ public:
 	static void displayAxisConfig(int axis);
 	static void displaySetup();
 	static void updateSetup();
+	static void displayJog();
+	stativ void updateJog();
 	static void clearScreen();
 	static void setVolume(int newVolume);
 	static void sendVolume(int newVolume);

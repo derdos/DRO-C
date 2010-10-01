@@ -255,17 +255,17 @@ void SLCD::forceUpdateHomeValues(){
 
 void SLCD::updateConfigValues(const double dist, int axis){
 	sendLCD("m 4 ",0);
-	Serial.println("Starting Config Values Update");
+	//Serial.println("Starting Config Values Update");
 	if (axis == 4) {
 		fmtDouble(dist,3,cValue,3,9);
 	} else {
 		fmtDouble(dist,4,cValue,2,9);
 	}
 	
-	Serial.print("cValue: ");
-	Serial.println(cValue);
+	//Serial.print("cValue: ");
+	//Serial.println(cValue);
 	sendLCD(cValue);
-	Serial.println("Config Values Updated");
+	//Serial.println("Config Values Updated");
 }
 
 void SLCD::clearScreen(){
@@ -324,6 +324,33 @@ void SLCD::updateSetup(){
 		sendLCD("m 10:q");
 	else if (volume == 2) //Loud
 		sendLCD("m 10:l");
+}
+
+void SLCD::displayJog(){
+	sendLCD("m 13");
+}
+
+void SLCD::updateJog(){
+	int axis1 = DRO::getJogAxis1();
+	int axis2 = DRO::getJogAxis2();
+
+	if (axis1 == 0)
+		sendLCD("m 14:x1");
+	else if (axis1 == 1)
+		sendLCD("m 14:y1");
+	else if (axis1 == 2)
+		sendLCD("m 14:z1");
+	else if (axis1 == 3)
+		sendLCD("m 14:a1");
+
+	if (axis2 == 0)
+		sendLCD("m 15:x2");
+	else if (axis2 == 1)
+		sendLCD("m 15:y2");
+	else if (axis2 == 2)
+		sendLCD("m 15:z2");
+	else if (axis2 == 3)
+		sendLCD("m 15:a2");
 }
 
 void SLCD::setVolume(int newVolume){

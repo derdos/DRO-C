@@ -12,6 +12,7 @@
 #include "panel.h"
 #include "axisconfigpanel.h"
 #include "setuppanel.h"
+#include "jogpanel.h"
 #include "parent.h"
 
 class HomePanel : public Panel {
@@ -22,6 +23,7 @@ private:
 	AxisConfigPanel ZConfig;
 	AxisConfigPanel RConfig;
 	SetupPanel setupPanel;
+	JogPanel jogPanel;
 
 public:
 	HomePanel(Parent *parent);

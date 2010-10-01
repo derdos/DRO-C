@@ -36,6 +36,9 @@ double DRO::dRAng;
 double DRO::dRScl;
 long DRO::lRCnt;
 
+int DRO::jogAxis1;
+int DRO::jogAxis2;
+
 DRO::DRO(){
 	ledPin = 13;
 	ledState = 1;
@@ -75,6 +78,16 @@ int DRO::getVolume(){
 	return iVolume;
 }
 
+int DRO::getJogAxis1(){
+	jogAxis1 = eSettings.readInt(JOG1_ADDR);
+	return jogAxis1;
+}
+
+int DRO::getJogAxis2(){
+	jogAxis2 = eSettings.readInt(JOG2_ADDR);
+	return jogAxis2;
+}
+
 void DRO::setUnits(int newUnit){
 	if ((newUnit <= 1) && (newUnit >= 0)){
 		if ((iUnits == INCH) && (newUnit == CM)) {
@@ -98,6 +111,48 @@ void DRO::setVolume(int newVolume){
 	if ((newVolume <= 2)&(newVolume >= 0))
 		iVolume = newVolume;
 		eSettings.writeInt(VOL_ADDR,iVolume);
+}
+
+void DRO::setJogAxis1(int newaxis){
+	//X = 0, Y = 1, Z = 2, R = 3
+	if ((newaxis <= 3)&(newaxis >= 0))
+		jogAxis1 = newaxis;
+		eSettings.writeInt(JOG1_ADDR,jogAxis1);
+}
+
+void DRO::setJogAxis2(int newaxis){
+	//X = 0, Y = 1, Z = 2, R = 3
+	if ((newaxis <= 3)&(newaxis >= 0))
+		jogAxis2 = newaxis;
+		eSettings.writeInt(JOG2_ADDR,jogAxis2);
+}
+
+int DRO::getXSign(){
+	if (dXScl >= 0)
+		return 1;
+	else
+		return -1;
+}
+
+int DRO::getYSign(){
+	if (dYScl >= 0)
+		return 1;
+	else
+		return -1;
+}
+
+int DRO::getZSign(){
+	if (dZScl >= 0)
+		return 1;
+	else
+		return -1;
+}
+
+int DRO::getRSign(){
+	if (dRScl >= 0)
+		return 1;
+	else
+		return -1;
 }
 
 //Accessor functions for the axes

@@ -23,6 +23,8 @@
 #define RSCL_ADDR	13
 #define UNIT_ADDR	17
 #define VOL_ADDR	19
+#define JOG1_ADDR	21
+#define JOG2_ADDR	23
 
 class DRO {
 public:
@@ -99,6 +101,16 @@ public:
 	static void ledBlink();
 	static EEPROMClassMod eSettings; //Class for writing and reading from EEPROM
 
+	static int getJogAxis1();
+	static int getJogAxis2();
+	static void setJogAxis1(int newaxis);
+	static void setJogAxis2(int newaxis);
+
+	static int getXSign();
+	static int getYSign();
+	static int getZSign();
+	static int getRSign();
+
 private:
 	static int ledPin;
 	static int ledState;
@@ -130,6 +142,9 @@ private:
 	static int YSChange;
 	static int ZSChange;
 	static int RSChange;
+
+	static int jogAxis1;
+	static int jogAxis2;
 };
 
 #endif /* DRO_H_ */

@@ -44,7 +44,7 @@ void SetupPanel::update(char *command){
 		//Nothing to do here...
 	}
 	else if (!strcmp(command,Return)) {
-		Serial.println("Popping Setup Panel");
+		//Serial.println("Popping Setup Panel");
 		parent->popPanel();
 	}
 	else if (!strcmp(command,Centimeter)) {
@@ -75,11 +75,11 @@ void SetupPanel::update(char *command){
 	else if (!strcmp(command,Calibrate)) {
 		Serial3.flush();
 		SLCD::sendLCD("tc");
-		Serial.println("Calibration Started");
+		//Serial.println("Calibration Started");
 		while(!Serial3.available()){
 			//Do nothing until the calibration completes
 		}
-		Serial.println("Calibration Complete");
+		//Serial.println("Calibration Complete");
 		SLCD::displaySetup();
 		SLCD::updateSetup();
 	}

@@ -217,7 +217,7 @@ void AxisConfigPanel::update(char *command){
 		else {
 			input = input.substring(0,input.length()-1);
 		}
-		Serial.print(input);
+		//Serial.print(input);
 	}
 	else if (!strcmp(command,dec)) {
 		if (input.length() == 0)
@@ -228,7 +228,7 @@ void AxisConfigPanel::update(char *command){
 		if (!isValid(input)){
 			input = input.substring(0,input.length()-1);
 		}
-		Serial.print(input);
+		//Serial.print(input);
 	}
 }
 

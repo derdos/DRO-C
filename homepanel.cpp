@@ -23,6 +23,7 @@ const char * RConf = "x173";
 
 const char * Setup  	= "x165";
 const char * Calibrate  = "x166";
+const char * Jog   		= "x167";
 
 const int AxisX = 1;
 const int AxisY = 2;
@@ -35,12 +36,13 @@ HomePanel::HomePanel(Parent *parent) :
 		YConfig(2,parent),
 		ZConfig(3,parent),
 		RConfig(4,parent),
-		setupPanel(parent){
+		setupPanel(parent),
+		jogPanel(parent){
 }
 
 void HomePanel::initialize(){
 	SLCD::initializeHome();
-	Serial.println("Home Panel Initialized");
+	//Serial.println("Home Panel Initialized");
 }
 
 void HomePanel::update(char *command){
@@ -77,5 +79,8 @@ void HomePanel::update(char *command){
 	} else if (!strcmp(command,Setup)) {
 		delay(20);
 		parent->pushPanel(&setupPanel);
+	} else if (!strcmp(command,Jog)) {
+		delay(20);
+		parent->pushPanel(&jogPanel);
 	}
 }
