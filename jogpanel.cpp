@@ -40,28 +40,28 @@ void JogPanel::update(char *command){
 	}else if (!strcmp(command,Return)) {
 		//Serial.println("Popping Setup Panel");
 		parent->popPanel();
-	}else if (!strcmp(command,x1)) {
+	}else if (!strcmp(command,x1) && (DRO::getJogAxis2() != Xn)) {
 		DRO::setJogAxis1(Xn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,y1)) {
+	}else if (!strcmp(command,y1) && (DRO::getJogAxis2() != Yn)) {
 		DRO::setJogAxis1(Yn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,z1)) {
+	}else if (!strcmp(command,z1) && (DRO::getJogAxis2() != Zn)) {
 		DRO::setJogAxis1(Zn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,r1)) {
+	}else if (!strcmp(command,r1) && (DRO::getJogAxis2() != Rn)) {
 		DRO::setJogAxis1(Rn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,x2)) {
+	}else if (!strcmp(command,x2) && (DRO::getJogAxis1() != Xn)) {
 		DRO::setJogAxis2(Xn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,y2)) {
+	}else if (!strcmp(command,y2) && (DRO::getJogAxis1() != Yn)) {
 		DRO::setJogAxis2(Yn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,z2)) {
+	}else if (!strcmp(command,z2) && (DRO::getJogAxis1() != Zn)) {
 		DRO::setJogAxis2(Zn);
 		SLCD::updateJog();
-	}else if (!strcmp(command,r2)) {
+	}else if (!strcmp(command,r2) && (DRO::getJogAxis1() != Rn)) {
 		DRO::setJogAxis2(Rn);
 		SLCD::updateJog();
 	}
