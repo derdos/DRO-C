@@ -43,15 +43,15 @@ void JogPanel::update(char *command){
 	}else if (!strcmp(command,x1) && (DRO::getJogAxis2() != Xn)) {
 		DRO::setJogAxis1(Xn);
 		SLCD::updateJog();
-		stopAxis2Jog();
+		stopAxis1Jog();
 	}else if (!strcmp(command,y1) && (DRO::getJogAxis2() != Yn)) {
 		DRO::setJogAxis1(Yn);
 		SLCD::updateJog();
-		stopAxis2Jog();
+		stopAxis1Jog();
 	}else if (!strcmp(command,z1) && (DRO::getJogAxis2() != Zn)) {
 		DRO::setJogAxis1(Zn);
 		SLCD::updateJog();
-		stopAxis2Jog();
+		stopAxis1Jog();
 	}else if (!strcmp(command,r1) && (DRO::getJogAxis2() != Rn)) {
 		DRO::setJogAxis1(Rn);
 		SLCD::updateJog();
@@ -76,15 +76,15 @@ void JogPanel::update(char *command){
 }
 
 void JogPanel::stopAxis1Jog(){
+	Serial.println("X10");
+	Serial.println("Y10");
 	Serial.println("Z10");
-	Serial.println("Z10");
-	Serial.println("Z10");
-	Serial.println("Z10");
+	Serial.println("A10");
 }
 
 void JogPanel::stopAxis2Jog(){
+	Serial.println("X20");
+	Serial.println("Y20");
 	Serial.println("Z20");
-	Serial.println("Z20");
-	Serial.println("Z20");
-	Serial.println("Z20");
+	Serial.println("A20");
 }
