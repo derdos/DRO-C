@@ -17,6 +17,9 @@ public:
 	
 	virtual void initialize();
 	virtual void update(char *command);
+
+	void stopAxis1Jog();
+	void stopAxis2Jog();
 };
 
 #endif  /* JOGPANEL_H_ */

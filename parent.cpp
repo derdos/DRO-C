@@ -305,9 +305,9 @@ void Parent::jogUpdate(){
 		digitalWrite(13,0);
 	}
 
-	if(((lastCommand[2] == '+') || (lastCommand[2] == '-')) &&
-		(upVal == LOW) || (dnVal == LOW) || (ltVal == LOW) || (rtVal == LOW)){
-		if(lastCommand[1] == '1'){
+	if((lastCommand[2] == '+') || (lastCommand[2] == '-')){
+		if((lastCommand[1] == '1') &&
+				((ltVal == LOW) && (rtVal == LOW))){
 			if(lastCommand[0] == 'X'){
 				Serial.println("X10");
 			}else if(lastCommand[0] == 'Y'){
@@ -317,7 +317,8 @@ void Parent::jogUpdate(){
 			}else if(lastCommand[0] == 'A'){
 				Serial.println("A10");
 			}
-		}else if(lastCommand[1] == '2'){
+		}else if((lastCommand[1] == '2') &&
+				((upVal == LOW) && (dnVal == LOW))){
 			if(lastCommand[0] == 'X'){
 				Serial.println("X20");
 			}else if(lastCommand[0] == 'Y'){
