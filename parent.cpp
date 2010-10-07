@@ -105,6 +105,7 @@ void Parent::popPanel(){
 }
 
 void Parent::jogUpdate(){
+	char lastCommand[4];
 	upPrev = upVal;
 	dnPrev = dnVal;
 	rtPrev = rtVal;
@@ -125,120 +126,207 @@ void Parent::jogUpdate(){
 
 	if(((upVal != upPrev) && (upVal == HIGH)) ||
 	   ((dnVal != dnPrev) && (dnVal == HIGH))){
-		if (axis2 == 0)
+		if (axis2 == 0){
 			Serial.println("X20");
-		else if (axis2 == 1)
+			strcpy(lastCommand, "X20");
+		}else if (axis2 == 1){
 			Serial.println("Y20");
-		else if (axis2 == 2)
+			strcpy(lastCommand, "Y20");
+		}else if (axis2 == 2){
 			Serial.println("Z20");
-		else if (axis2 == 3)
+			strcpy(lastCommand, "Z20");
+		}else if (axis2 == 3){
 			Serial.println("A20");
+			strcpy(lastCommand, "A20");
+		}
 	}
 	else if ((upVal != upPrev) && (upVal == LOW) && (dnVal == HIGH)){
-		if (axis2 == 0)
-			if (xSgn > 0)
+		if (axis2 == 0){
+			if (xSgn > 0){
 				Serial.println("X2+");
-			else
+				strcpy(lastCommand, "X2+");
+			}else{
 				Serial.println("X2-");
-		else if (axis2 == 1)
-			if (ySgn > 0)
+				strcpy(lastCommand, "X2-");
+			}
+		}else if (axis2 == 1){
+			if (ySgn > 0){
 				Serial.println("Y2+");
-			else
+				strcpy(lastCommand, "Y2+");
+			}else{
 				Serial.println("Y2-");
-		else if (axis2 == 2)
-			if (zSgn > 0)
+				strcpy(lastCommand, "Y2-");
+			}
+		}else if (axis2 == 2){
+			if (zSgn > 0){
 				Serial.println("Z2+");
-			else
+				strcpy(lastCommand, "Z2+");
+			}else{
 				Serial.println("Z2-");
-		else if (axis2 == 3)
-			if (rSgn > 0)
+				strcpy(lastCommand, "Z2-");
+			}
+		}else if (axis2 == 3){
+			if (rSgn > 0){
 				Serial.println("A2+");
-			else
+				strcpy(lastCommand, "A2+");
+			}else{
 				Serial.println("A2-");
+				strcpy(lastCommand, "A2-");
+			}
+		}
 	}
 	else if ((dnVal != dnPrev) && (dnVal == LOW) && (upVal == HIGH)){
-		if (axis2 == 0)
-			if (xSgn < 0)
+		if (axis2 == 0){
+			if (xSgn < 0){
 				Serial.println("X2+");
-			else
+				strcpy(lastCommand, "X2+");
+			}else{
 				Serial.println("X2-");
-		else if (axis2 == 1)
-			if (ySgn < 0)
+				strcpy(lastCommand, "X2-");
+			}
+		}else if (axis2 == 1){
+			if (ySgn < 0){
 				Serial.println("Y2+");
-			else
+				strcpy(lastCommand, "Y2+");
+			}else{
 				Serial.println("Y2-");
-		else if (axis2 == 2)
-			if (zSgn < 0)
+				strcpy(lastCommand, "Y2-");
+			}
+		}else if (axis2 == 2){
+			if (zSgn < 0){
 				Serial.println("Z2+");
-			else
+				strcpy(lastCommand, "Z2+");
+			}else{
 				Serial.println("Z2-");
-		else if (axis2 == 3)
-			if (rSgn < 0)
+				strcpy(lastCommand, "Z2-");
+			}
+		}else if (axis2 == 3){
+			if (rSgn < 0){
 				Serial.println("A2+");
-			else
+				strcpy(lastCommand, "A2+");
+			}else{
 				Serial.println("A2-");
+				strcpy(lastCommand, "A2-");
+			}
+		}
 	}
 
 
 	if(((ltVal != ltPrev) && (ltVal == HIGH)) ||
 	   ((rtVal != rtPrev) && (rtVal == HIGH))){
-		if (axis1 == 0)
+		if (axis1 == 0){
 			Serial.println("X10");
-		else if (axis1 == 1)
+			strcpy(lastCommand, "X10");
+		}else if (axis1 == 1){
 			Serial.println("Y10");
-		else if (axis1 == 2)
+			strcpy(lastCommand, "Y10");
+		}else if (axis1 == 2){
 			Serial.println("Z10");
-		else if (axis1 == 3)
+			strcpy(lastCommand, "Z10");
+		}else if (axis1 == 3){
 			Serial.println("A10");
+			strcpy(lastCommand, "A10");
+		}
 	}
 	else if ((ltVal != ltPrev) && (ltVal == LOW) && (rtVal == HIGH)){
-		if (axis1 == 0)
-			if (xSgn > 0)
+		if (axis1 == 0){
+			if (xSgn > 0){
 				Serial.println("X1+");
-			else
+				strcpy(lastCommand, "X1+");
+			}else{
 				Serial.println("X1-");
-		else if (axis1 == 1)
-			if (ySgn > 0)
+				strcpy(lastCommand, "X1-");
+			}
+		}else if (axis1 == 1){
+			if (ySgn > 0){
 				Serial.println("Y1+");
-			else
+				strcpy(lastCommand, "Y1+");
+			}else{
 				Serial.println("Y1-");
-		else if (axis1 == 2)
-			if (zSgn > 0)
+				strcpy(lastCommand, "Y1-");
+			}
+		}else if (axis1 == 2){
+			if (zSgn > 0){
 				Serial.println("Z1+");
-			else
+				strcpy(lastCommand, "Z1+");
+			}else{
 				Serial.println("Z1-");
-		else if (axis1 == 3)
-			if (rSgn > 0)
+				strcpy(lastCommand, "Z1-");
+			}
+		}else if (axis1 == 3){
+			if (rSgn > 0){
 				Serial.println("A1+");
-			else
+				strcpy(lastCommand, "A1+");
+			}else{
 				Serial.println("A1-");
+				strcpy(lastCommand, "A1-");
+			}
+		}
 	}
 	else if ((rtVal != rtPrev) && (rtVal == LOW) && (ltVal == HIGH)){
-		if (axis1 == 0)
-			if (xSgn < 0)
+		if (axis1 == 0){
+			if (xSgn < 0){
 				Serial.println("X1+");
-			else
+				strcpy(lastCommand, "X1+");
+			}else{
 				Serial.println("X1-");
-		else if (axis1 == 1)
-			if (ySgn < 0)
+				strcpy(lastCommand, "X1-");
+			}
+		}else if (axis1 == 1){
+			if (ySgn < 0){
 				Serial.println("Y1+");
-			else
+				strcpy(lastCommand, "Y1+");
+			}else{
 				Serial.println("Y1-");
-		else if (axis1 == 2)
-			if (zSgn < 0)
+				strcpy(lastCommand, "Y1-");
+			}
+		}else if (axis1 == 2){
+			if (zSgn < 0){
 				Serial.println("Z1+");
-			else
+				strcpy(lastCommand, "Z1+");
+			}else{
 				Serial.println("Z1-");
-		else if (axis1 == 3)
-			if (rSgn < 0)
+				strcpy(lastCommand, "Z1-");
+			}
+		}else if (axis1 == 3){
+			if (rSgn < 0){
 				Serial.println("A1+");
-			else
+				strcpy(lastCommand, "A1+");
+			}else{
 				Serial.println("A1-");
+				strcpy(lastCommand, "A1-");
+			}
+		}
 	}
 
 	if ((upVal == LOW) || (dnVal == LOW) || (ltVal == LOW) || (rtVal == LOW)){
 		digitalWrite(13,1);
 	} else {
 		digitalWrite(13,0);
+	}
+
+	if(((lastCommand[2] == '+') || (lastCommand[2] == '-')) &&
+		(upVal == LOW) || (dnVal == LOW) || (ltVal == LOW) || (rtVal == LOW)){
+		if(lastCommand[1] == '1'){
+			if(lastCommand[0] == 'X'){
+				Serial.println("X10");
+			}else if(lastCommand[0] == 'Y'){
+				Serial.println("Y10");
+			}else if(lastCommand[0] == 'Z'){
+				Serial.println("Z10");
+			}else if(lastCommand[0] == 'A'){
+				Serial.println("A10");
+			}
+		}else if(lastCommand[1] == '2'){
+			if(lastCommand[0] == 'X'){
+				Serial.println("X20");
+			}else if(lastCommand[0] == 'Y'){
+				Serial.println("Y20");
+			}else if(lastCommand[0] == 'Z'){
+				Serial.println("Z20");
+			}else if(lastCommand[0] == 'A'){
+				Serial.println("A20");
+			}
+		}
 	}
 }
